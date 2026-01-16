@@ -84,21 +84,23 @@ const Services = () => {
       <Navbar />
       
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-warm-gray-50 via-white to-warm-gray-100">
         <div className="absolute inset-0">
-          <img src={serverRoom} alt="" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/85 to-navy/70" />
+          <img src={serverRoom} alt="" className="w-full h-full object-cover opacity-[0.08]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-transparent to-primary/5" />
         </div>
+        <div className="absolute top-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 left-10 w-64 h-64 bg-tech-blue/5 rounded-full blur-3xl" />
         <div className="container-custom relative z-10">
           <ScrollReveal>
             <div className="max-w-3xl">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white/90 text-sm font-medium mb-4">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-4">
                 Our Solutions
               </span>
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
                 Comprehensive IT Solutions for Your Business
               </h1>
-              <p className="text-xl text-white/70">
+              <p className="text-xl text-muted-foreground">
                 From infrastructure to software, we deliver end-to-end technology solutions that power your success.
               </p>
             </div>
