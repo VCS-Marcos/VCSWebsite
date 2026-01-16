@@ -61,18 +61,20 @@ const Contact = () => {
       <Navbar />
       
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-navy">
-        <div className="absolute inset-0 grid-pattern opacity-10" />
+      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-warm-gray-50 via-white to-warm-gray-100">
+        <div className="absolute inset-0 grid-pattern opacity-[0.03]" />
+        <div className="absolute top-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 left-10 w-64 h-64 bg-tech-blue/5 rounded-full blur-3xl" />
         <div className="container-custom relative z-10">
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white/90 text-sm font-medium mb-4">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-4">
                 Contact Us
               </span>
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
                 Let's Start a Conversation
               </h1>
-              <p className="text-xl text-white/70">
+              <p className="text-xl text-muted-foreground">
                 Have a project in mind? We'd love to hear from you. Get in touch with our team.
               </p>
             </div>
