@@ -84,28 +84,46 @@ const Services = () => {
       <Navbar />
       
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-warm-gray-50 via-white to-warm-gray-100">
+      <section className="relative pt-32 pb-24 overflow-hidden">
+        {/* Background with image texture */}
         <div className="absolute inset-0">
-          <img src={serverRoom} alt="" className="w-full h-full object-cover opacity-[0.08]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-transparent to-primary/5" />
+          <img src={serverRoom} alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-slate-800/90 to-primary/80" />
         </div>
-        <div className="absolute top-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-10 w-64 h-64 bg-tech-blue/5 rounded-full blur-3xl" />
+        
+        {/* Animated geometric patterns */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 -right-20 w-[500px] h-[500px] border border-white/10 rounded-full" />
+          <div className="absolute top-1/4 -right-10 w-[400px] h-[400px] border border-white/5 rounded-full" />
+          <div className="absolute -bottom-32 -left-32 w-[600px] h-[600px] border border-white/5 rounded-full" />
+        </div>
+        
+        {/* Glowing orbs */}
+        <div className="absolute top-20 right-1/4 w-64 h-64 bg-primary/20 rounded-full blur-[100px]" />
+        <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-tech-blue/15 rounded-full blur-[120px]" />
+        
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 grid-pattern opacity-[0.05]" />
+        
         <div className="container-custom relative z-10">
           <ScrollReveal>
             <div className="max-w-3xl">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-4">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-sm font-medium mb-6">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 Our Solutions
               </span>
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Comprehensive IT Solutions for Your Business
               </h1>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-xl text-white/70 leading-relaxed">
                 From infrastructure to software, we deliver end-to-end technology solutions that power your success.
               </p>
             </div>
           </ScrollReveal>
         </div>
+        
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
       </section>
 
       {/* Services Grid */}

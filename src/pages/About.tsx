@@ -43,25 +43,44 @@ const About = () => {
       <Navbar />
       
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-warm-gray-50 via-white to-warm-gray-100">
-        <div className="absolute inset-0 grid-pattern opacity-[0.03]" />
-        <div className="absolute top-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-10 w-64 h-64 bg-tech-blue/5 rounded-full blur-3xl" />
+      <section className="relative pt-32 pb-24 overflow-hidden">
+        {/* Sophisticated dark gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-primary/70" />
+        
+        {/* Abstract network pattern */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Decorative geometric shapes */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-white/5 rounded-full" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/10 rounded-full" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-white/5 rounded-full" />
+        </div>
+        
+        {/* Glowing accents */}
+        <div className="absolute top-20 left-1/4 w-[300px] h-[300px] bg-primary/25 rounded-full blur-[100px]" />
+        <div className="absolute bottom-20 right-1/4 w-[400px] h-[400px] bg-tech-blue/20 rounded-full blur-[120px]" />
+        
+        {/* Grid pattern */}
+        <div className="absolute inset-0 grid-pattern opacity-[0.05]" />
+        
         <div className="container-custom relative z-10">
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-4">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-6 mx-auto">
+                <Award className="w-4 h-4" />
                 About Us
               </span>
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Your Trusted IT Partner Since 2009
               </h1>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-xl text-white/70 leading-relaxed">
                 We've been empowering businesses with innovative technology solutions for over 15 years.
               </p>
             </div>
           </ScrollReveal>
         </div>
+        
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
       </section>
 
       {/* Stats */}

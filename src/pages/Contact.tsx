@@ -61,25 +61,46 @@ const Contact = () => {
       <Navbar />
       
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-warm-gray-50 via-white to-warm-gray-100">
-        <div className="absolute inset-0 grid-pattern opacity-[0.03]" />
-        <div className="absolute top-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-10 w-64 h-64 bg-tech-blue/5 rounded-full blur-3xl" />
+      <section className="relative pt-32 pb-24 overflow-hidden">
+        {/* Warm professional gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-slate-800" />
+        
+        {/* Abstract communication elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Flowing curves */}
+          <svg className="absolute top-0 right-0 w-full h-full opacity-10" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <path d="M0,200 Q250,100 500,200 T1000,200" stroke="white" strokeWidth="1" fill="none" />
+            <path d="M0,400 Q250,300 500,400 T1000,400" stroke="white" strokeWidth="1" fill="none" />
+            <path d="M0,600 Q250,500 500,600 T1000,600" stroke="white" strokeWidth="1" fill="none" />
+          </svg>
+        </div>
+        
+        {/* Glowing orbs */}
+        <div className="absolute top-1/3 right-1/4 w-[350px] h-[350px] bg-white/10 rounded-full blur-[100px]" />
+        <div className="absolute bottom-1/4 left-1/3 w-[300px] h-[300px] bg-primary-foreground/10 rounded-full blur-[80px]" />
+        
+        {/* Dot pattern */}
+        <div className="absolute inset-0 dot-pattern opacity-[0.08]" />
+        
         <div className="container-custom relative z-10">
           <ScrollReveal>
             <div className="max-w-3xl mx-auto text-center">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-4">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-6 mx-auto">
+                <Mail className="w-4 h-4" />
                 Contact Us
               </span>
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Let's Start a Conversation
               </h1>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-xl text-white/80 leading-relaxed">
                 Have a project in mind? We'd love to hear from you. Get in touch with our team.
               </p>
             </div>
           </ScrollReveal>
         </div>
+        
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
       </section>
 
       {/* Contact Info */}
