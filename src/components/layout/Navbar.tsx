@@ -132,7 +132,7 @@ export const Navbar = () => {
               alt="VCS Logo" 
               className={`h-12 w-auto transition-all duration-300 ${
                 isScrolled ? "" : "brightness-0 invert"
-              }`}
+              }`} 
             />
           </Link>
 
@@ -153,7 +153,7 @@ export const Navbar = () => {
                         ? "text-primary" 
                         : "text-white"
                       : isScrolled
-                        ? "text-foreground hover:text-primary hover:bg-muted/50"
+                        ? "text-foreground hover:text-primary hover:bg-muted"
                         : "text-white/90 hover:text-white hover:bg-white/10"
                   }`}
                 >
@@ -226,7 +226,7 @@ export const Navbar = () => {
               className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
                 isScrolled 
                   ? "btn-primary" 
-                  : "bg-white text-primary hover:bg-white/90 shadow-lg"
+                  : "bg-white text-primary hover:bg-white/90"
               }`}
             >
               Get Started

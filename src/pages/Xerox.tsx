@@ -63,40 +63,25 @@ const Xerox = () => {
       <Navbar />
       
       {/* Hero */}
-      <section className="relative pt-32 pb-24 overflow-hidden">
-        {/* Burgundy gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-primary/90 to-primary" />
-        
-        {/* Abstract shapes */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-[700px] h-[700px] bg-white/5 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 -left-32 w-[500px] h-[500px] bg-primary-foreground/5 rounded-full blur-3xl" />
-          {/* Decorative circles */}
-          <div className="absolute top-20 right-1/3 w-96 h-96 border border-white/10 rounded-full" />
-          <div className="absolute bottom-10 right-1/4 w-64 h-64 border border-white/5 rounded-full" />
-        </div>
-        
-        {/* Dot pattern */}
-        <div className="absolute inset-0 dot-pattern opacity-[0.08]" />
-        
+      <section className="relative pt-32 pb-20 overflow-hidden bg-navy">
+        <div className="absolute inset-0 grid-pattern opacity-10" />
         <div className="container-custom relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <ScrollReveal>
               <div>
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-6">
-                  <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white/90 text-sm font-medium mb-4">
                   Authorized Xerox Partner
                 </span>
-                <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
                   Xerox Document Solutions
                 </h1>
-                <p className="text-xl text-white/80 mb-8 leading-relaxed">
+                <p className="text-xl text-white/70 mb-8">
                   As the exclusive authorized distributor of Xerox products, we bring you world-class printing and document solutions backed by expert support.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link
                     to="/contact"
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold bg-white text-primary hover:bg-white/90 transition-all shadow-lg"
+                    className="btn-primary inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold"
                   >
                     Request a Quote
                   </Link>
@@ -111,8 +96,7 @@ const Xerox = () => {
             </ScrollReveal>
             <ScrollReveal direction="left">
               <div className="relative">
-                <div className="absolute -inset-8 bg-white/10 rounded-3xl blur-3xl" />
-                <div className="absolute -inset-1 bg-gradient-to-br from-white/20 to-transparent rounded-2xl" />
+                <div className="absolute -inset-4 bg-primary/20 rounded-3xl blur-3xl" />
                 <img
                   src={xeroxPrinter}
                   alt="Xerox Printer"
@@ -122,9 +106,6 @@ const Xerox = () => {
             </ScrollReveal>
           </div>
         </div>
-        
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
       </section>
 
       {/* Benefits */}

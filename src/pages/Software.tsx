@@ -47,47 +47,23 @@ const Software = () => {
       <Navbar />
       
       {/* Hero */}
-      <section className="relative pt-32 pb-24 overflow-hidden">
-        {/* Tech-inspired dark gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-tech-blue/80 to-slate-800" />
-        
-        {/* Code-inspired background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Floating code brackets */}
-          <div className="absolute top-32 left-20 text-[200px] font-mono text-white/5 select-none">&lt;/&gt;</div>
-          <div className="absolute bottom-20 right-20 text-[150px] font-mono text-white/5 select-none">{ }</div>
-        </div>
-        
-        {/* Glowing orbs */}
-        <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-tech-blue/30 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 left-1/3 w-[300px] h-[300px] bg-primary/20 rounded-full blur-[100px]" />
-        
-        {/* Grid pattern */}
-        <div className="absolute inset-0 grid-pattern opacity-[0.08]" />
-        
-        {/* Animated lines */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-tech-blue/20 to-transparent" />
-          <div className="absolute top-0 left-2/4 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent" />
-          <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-tech-blue/20 to-transparent" />
-        </div>
-        
+      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-hero">
+        <div className="absolute inset-0 grid-pattern opacity-10" />
         <div className="container-custom relative z-10">
           <ScrollReveal>
             <div className="max-w-3xl">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-6">
-                <Code className="w-4 h-4" />
+              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white/90 text-sm font-medium mb-4">
                 Software Solutions
               </span>
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
                 In-House Software Development
               </h1>
-              <p className="text-xl text-white/70 mb-8 leading-relaxed">
+              <p className="text-xl text-white/70 mb-8">
                 We build custom software solutions that solve real business problems. From enterprise applications to mobile apps, our team delivers excellence.
               </p>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold bg-white text-slate-900 hover:bg-white/90 transition-all shadow-lg group"
+                className="btn-primary inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold group"
               >
                 Start Your Project
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -95,9 +71,6 @@ const Software = () => {
             </div>
           </ScrollReveal>
         </div>
-        
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
       </section>
 
       {/* Technologies */}
