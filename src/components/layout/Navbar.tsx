@@ -130,7 +130,9 @@ export const Navbar = () => {
             <img 
               src={logo} 
               alt="VCS Logo" 
-              className="h-12 w-auto transition-all duration-300" 
+              className={`h-12 w-auto transition-all duration-300 ${
+                isScrolled ? "" : "brightness-0 invert"
+              }`}
             />
           </Link>
 
@@ -147,8 +149,12 @@ export const Navbar = () => {
                   to={item.href}
                   className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-lg ${
                     location.pathname.startsWith(item.href)
-                      ? "text-primary"
-                      : "text-foreground hover:text-primary hover:bg-muted/50"
+                      ? isScrolled 
+                        ? "text-primary" 
+                        : "text-white"
+                      : isScrolled
+                        ? "text-foreground hover:text-primary hover:bg-muted/50"
+                        : "text-white/90 hover:text-white hover:bg-white/10"
                   }`}
                 >
                   {item.label}
@@ -217,7 +223,11 @@ export const Navbar = () => {
           <div className="hidden lg:flex items-center gap-4">
             <Link
               to="/contact"
-              className="btn-primary px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+                isScrolled 
+                  ? "btn-primary" 
+                  : "bg-white text-primary hover:bg-white/90 shadow-lg"
+              }`}
             >
               Get Started
             </Link>
@@ -226,7 +236,11 @@ export const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg transition-colors hover:bg-muted text-foreground"
+            className={`lg:hidden p-2 rounded-lg transition-colors ${
+              isScrolled 
+                ? "hover:bg-muted text-foreground" 
+                : "hover:bg-white/10 text-white"
+            }`}
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />
