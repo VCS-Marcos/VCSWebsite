@@ -47,18 +47,21 @@ const Software = () => {
       <Navbar />
       
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-hero">
-        <div className="absolute inset-0 grid-pattern opacity-10" />
+      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-background via-background to-warm-gray/30">
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
+          <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-tech-blue/5 to-transparent" />
+        </div>
         <div className="container-custom relative z-10">
           <ScrollReveal>
             <div className="max-w-3xl">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white/90 text-sm font-medium mb-4">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
                 Software Solutions
               </span>
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
                 In-House Software Development
               </h1>
-              <p className="text-xl text-white/70 mb-8">
+              <p className="text-xl text-muted-foreground mb-8">
                 We build custom software solutions that solve real business problems. From enterprise applications to mobile apps, our team delivers excellence.
               </p>
               <Link
