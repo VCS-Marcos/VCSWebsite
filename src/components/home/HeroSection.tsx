@@ -40,38 +40,35 @@ interface FeatureCardProps {
 
 const FeatureCard = ({ icon: Icon, title, description, variant, delay }: FeatureCardProps) => {
   const isLight = variant === "light";
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay }}
-      whileHover={{ 
-        y: -8, 
-        scale: 1.02,
-        boxShadow: isLight 
-          ? "0 20px 40px -15px rgba(139, 29, 44, 0.15)" 
-          : "0 20px 40px -15px rgba(139, 29, 44, 0.3)"
+      transition={{ duration: 0.3, delay }}
+      whileHover={{
+        y: -10,
+        scale: 1.03,
+        boxShadow: isLight
+          ? "0 25px 50px -12px rgba(139, 29, 44, 0.2)"
+          : "0 25px 50px -12px rgba(139, 29, 44, 0.4)"
       }}
-      className={`p-6 rounded-2xl cursor-pointer transition-all duration-300 ${
-        isLight 
-          ? "bg-white border border-border/50 shadow-card hover:border-primary/20" 
-          : "bg-gradient-to-br from-primary to-burgundy-dark text-white shadow-lg"
-      }`}
+      className={`p-6 rounded-2xl cursor-pointer transition-all duration-200 ${isLight
+        ? "bg-white border border-border/50 shadow-card hover:border-burgundy/30 hover:shadow-xl"
+        : "bg-gradient-to-br from-primary to-burgundy-dark text-white shadow-lg hover:shadow-2xl"
+        }`}
     >
-      <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-        isLight 
-          ? "bg-primary/10" 
-          : "bg-white/20"
-      }`}>
+      <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors duration-200 ${isLight
+        ? "bg-primary/10 group-hover:bg-primary/20"
+        : "bg-white/20 group-hover:bg-white/30"
+        }`}>
         <Icon className={`w-6 h-6 ${isLight ? "text-primary" : "text-white"}`} />
       </div>
-      <h3 className={`font-display font-semibold text-lg mb-2 ${
-        isLight ? "text-foreground" : "text-white"
-      }`}>
+      <h3 className={`font-display font-semibold text-lg mb-2 transition-colors duration-200 ${isLight ? "text-foreground" : "text-white"
+        }`}>
         {title}
       </h3>
-      <p className={`text-sm ${isLight ? "text-muted-foreground" : "text-white/80"}`}>
+      <p className={`text-sm transition-colors duration-200 ${isLight ? "text-muted-foreground" : "text-white/80"}`}>
         {description}
       </p>
     </motion.div>
@@ -185,7 +182,7 @@ export const HeroSection = () => {
               <div className="col-span-1">
                 <FeatureCard {...featureCards[1]} delay={0.4} />
               </div>
-              
+
               {/* Bottom row - 1 card + stat */}
               <div className="col-span-1">
                 <FeatureCard {...featureCards[2]} delay={0.5} />
@@ -194,13 +191,13 @@ export const HeroSection = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.6 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.02,
-                    boxShadow: "0 20px 40px -15px rgba(139, 29, 44, 0.15)"
+                  transition={{ duration: 0.3, delay: 0.6 }}
+                  whileHover={{
+                    y: -10,
+                    scale: 1.03,
+                    boxShadow: "0 25px 50px -12px rgba(139, 29, 44, 0.2)"
                   }}
-                  className="p-6 rounded-2xl bg-gradient-to-br from-white to-warm-gray/30 border border-border/50 shadow-card cursor-pointer transition-all duration-300 hover:border-primary/20"
+                  className="p-6 rounded-2xl bg-gradient-to-br from-white to-warm-gray/30 border border-border/50 shadow-card cursor-pointer transition-all duration-200 hover:border-burgundy/20 hover:shadow-xl"
                 >
                   <div className="text-4xl font-display font-bold text-primary mb-2">
                     99.9%

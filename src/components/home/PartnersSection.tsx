@@ -2,50 +2,50 @@ import { motion } from "framer-motion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const partners = [
-  { name: "Xerox", logo: "XEROX" },
-  { name: "Microsoft", logo: "Microsoft" },
-  { name: "Cisco", logo: "CISCO" },
-  { name: "Dell", logo: "DELL" },
-  { name: "HP", logo: "HP" },
-  { name: "VMware", logo: "VMware" },
-  { name: "AWS", logo: "AWS" },
-  { name: "Google Cloud", logo: "Google Cloud" },
+  { name: "Xerox", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Xerox_logo.svg/2560px-Xerox_logo.svg.png" },
+  { name: "Microsoft", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/2048px-Microsoft_logo.svg.png" },
+  { name: "Cisco", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/1200px-Cisco_logo_blue_2016.svg.png" },
+  { name: "Dell", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dell_logo_2016.svg/2560px-Dell_logo_2016.svg.png" },
+  { name: "HP", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/2048px-HP_logo_2012.svg.png" },
+  { name: "VMware", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Vmware.svg/2560px-Vmware.svg.png" },
+  { name: "AWS", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1024px-Amazon_Web_Services_Logo.svg.png" },
+  { name: "Google Cloud", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/2560px-Google_Cloud_logo.svg.png" },
 ];
 
 export const PartnersSection = () => {
   return (
-    <section className="py-16 bg-muted/50 overflow-hidden">
+    <section className="py-20 bg-white overflow-hidden border-y border-slate-100">
       <div className="container-custom">
         <ScrollReveal>
-          <p className="text-center text-muted-foreground text-sm font-medium uppercase tracking-wider mb-10">
-            Trusted by leading brands worldwide
-          </p>
+          <div className="text-center mb-16">
+            <h2 className="font-display text-2xl font-bold text-[#1A1A1A] mb-4">Strategic Global Partners</h2>
+            <div className="w-16 h-1 bg-burgundy mx-auto rounded-full" />
+          </div>
         </ScrollReveal>
 
         {/* Infinite scroll effect */}
         <div className="relative">
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-muted/50 to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-muted/50 to-transparent z-10" />
-          
           <motion.div
-            animate={{ x: [0, -1920] }}
+            animate={{ x: [0, -1600] }}
             transition={{
               x: {
-                duration: 30,
+                duration: 50,
                 repeat: Infinity,
                 ease: "linear",
               },
             }}
-            className="flex gap-16 items-center"
+            className="flex gap-20 items-center"
           >
-            {[...partners, ...partners, ...partners].map((partner, index) => (
+            {[...partners, ...partners].map((partner, index) => (
               <div
                 key={`${partner.name}-${index}`}
-                className="flex-shrink-0 px-8 py-4 bg-card rounded-xl border border-border hover:border-primary/30 transition-colors"
+                className="flex-shrink-0 w-48 md:w-60 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100 flex items-center justify-center p-6 h-32"
               >
-                <span className="font-display font-bold text-xl text-foreground/60 hover:text-primary transition-colors whitespace-nowrap">
-                  {partner.logo}
-                </span>
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="w-full h-auto object-contain max-h-24"
+                />
               </div>
             ))}
           </motion.div>
