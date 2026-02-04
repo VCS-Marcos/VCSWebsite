@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Printer, FileText, Download, ArrowRight, CheckCircle, Phone, Mail } from "lucide-react";
+import { Printer, FileText, Download, ArrowRight, Phone, Mail, Award, Settings, Headphones, Package, GraduationCap, Wrench, RefreshCw, CreditCard } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -47,14 +47,46 @@ const brochures = [
 ];
 
 const benefits = [
-  "Authorized Exclusive Distributor",
-  "Genuine Xerox Parts & Supplies",
-  "Expert Installation & Setup",
-  "Comprehensive Training",
-  "Priority Technical Support",
-  "Maintenance Contracts",
-  "Trade-in Programs",
-  "Flexible Financing Options",
+  {
+    icon: Award,
+    title: "Certified Expertise",
+    description: "Our team is fully certified to deploy, configure, and maintain complex Xerox environments.",
+  },
+  {
+    icon: Settings,
+    title: "Seamless Integration",
+    description: "We ensure new hardware integrates perfectly with your existing IT infrastructure and security policies.",
+  },
+  {
+    icon: Headphones,
+    title: "Ongoing Support",
+    description: "24/7 monitoring and proactive maintenance to keep your print fleet running smoothly.",
+  },
+  {
+    icon: Package,
+    title: "Genuine Parts & Supplies",
+    description: "Access to authentic Xerox consumables and replacement parts for optimal performance.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Comprehensive Training",
+    description: "End-user and administrator training to maximize productivity with your Xerox solutions.",
+  },
+  {
+    icon: Wrench,
+    title: "Maintenance Contracts",
+    description: "Flexible service agreements tailored to your business needs and budget requirements.",
+  },
+  {
+    icon: RefreshCw,
+    title: "Trade-in Programs",
+    description: "Upgrade your old equipment with our competitive trade-in offers and recycling services.",
+  },
+  {
+    icon: CreditCard,
+    title: "Flexible Financing",
+    description: "Easy payment plans and leasing options to help you acquire the technology you need.",
+  },
 ];
 
 const Xerox = () => {
@@ -127,10 +159,17 @@ const Xerox = () => {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit, index) => (
-              <ScrollReveal key={benefit} delay={index * 0.05}>
-                <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">
-                  <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="font-medium text-foreground">{benefit}</span>
+              <ScrollReveal key={benefit.title} delay={index * 0.05}>
+                <div className="bg-card rounded-2xl border border-border p-6 h-full hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                    <benefit.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="font-display font-semibold text-foreground mb-2">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {benefit.description}
+                  </p>
                 </div>
               </ScrollReveal>
             ))}
