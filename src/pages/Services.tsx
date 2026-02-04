@@ -84,21 +84,21 @@ const Services = () => {
       <Navbar />
       
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={serverRoom} alt="" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/85 to-navy/70" />
+      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-background via-background to-warm-gray/30">
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
+          <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-tech-blue/5 to-transparent" />
         </div>
         <div className="container-custom relative z-10">
           <ScrollReveal>
             <div className="max-w-3xl">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white/90 text-sm font-medium mb-4">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
                 Our Solutions
               </span>
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
                 Comprehensive IT Solutions for Your Business
               </h1>
-              <p className="text-xl text-white/70">
+              <p className="text-xl text-muted-foreground">
                 From infrastructure to software, we deliver end-to-end technology solutions that power your success.
               </p>
             </div>
