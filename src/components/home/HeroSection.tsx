@@ -1,119 +1,220 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Play } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
-import ScrollReveal from "@/components/ui/ScrollReveal";
+import { ArrowRight, Shield, Zap, Cpu, Clock } from "lucide-react";
 import Counter from "@/components/ui/Counter";
 
 const stats = [
   { value: 500, suffix: "+", label: "Clients Served" },
-  { value: 15, suffix: "+", label: "Years Experience" },
-  { value: 99.9, suffix: "%", label: "Uptime Guarantee" },
   { value: 24, suffix: "/7", label: "Support Available" },
+  { value: 15, suffix: "+", label: "Years Experience" },
 ];
+
+const featureCards = [
+  {
+    icon: Shield,
+    title: "Secure Infrastructure",
+    description: "Enterprise-grade security and reliability",
+    variant: "light" as const,
+  },
+  {
+    icon: Zap,
+    title: "24/7 Support",
+    description: "Round-the-clock technical assistance",
+    variant: "dark" as const,
+  },
+  {
+    icon: Cpu,
+    title: "Smart Solutions",
+    description: "AI-powered automation and efficiency",
+    variant: "light" as const,
+  },
+];
+
+interface FeatureCardProps {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  variant: "light" | "dark";
+  delay: number;
+}
+
+const FeatureCard = ({ icon: Icon, title, description, variant, delay }: FeatureCardProps) => {
+  const isLight = variant === "light";
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay }}
+      whileHover={{ 
+        y: -8, 
+        scale: 1.02,
+        boxShadow: isLight 
+          ? "0 20px 40px -15px rgba(139, 29, 44, 0.15)" 
+          : "0 20px 40px -15px rgba(139, 29, 44, 0.3)"
+      }}
+      className={`p-6 rounded-2xl cursor-pointer transition-all duration-300 ${
+        isLight 
+          ? "bg-white border border-border/50 shadow-card hover:border-primary/20" 
+          : "bg-gradient-to-br from-primary to-burgundy-dark text-white shadow-lg"
+      }`}
+    >
+      <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
+        isLight 
+          ? "bg-primary/10" 
+          : "bg-white/20"
+      }`}>
+        <Icon className={`w-6 h-6 ${isLight ? "text-primary" : "text-white"}`} />
+      </div>
+      <h3 className={`font-display font-semibold text-lg mb-2 ${
+        isLight ? "text-foreground" : "text-white"
+      }`}>
+        {title}
+      </h3>
+      <p className={`text-sm ${isLight ? "text-muted-foreground" : "text-white/80"}`}>
+        {description}
+      </p>
+    </motion.div>
+  );
+};
+
+const StatCard = ({ value, suffix, label, delay }: { value: number; suffix: string; label: string; delay: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay }}
+    className="text-center"
+  >
+    <div className="text-3xl sm:text-4xl font-display font-bold text-primary mb-1">
+      <Counter end={value} suffix={suffix} />
+    </div>
+    <div className="text-sm text-muted-foreground">{label}</div>
+  </motion.div>
+);
 
 export const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0">
-        <img
-          src={heroBg}
-          alt=""
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/80 to-navy/60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent to-transparent" />
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-background via-background to-warm-gray/30">
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-tech-blue/5 to-transparent" />
       </div>
-
-      {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 grid-pattern opacity-10" />
 
       {/* Content */}
       <div className="container-custom relative z-10 pt-32 pb-20">
-        <div className="max-w-4xl">
-          <ScrollReveal>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Content */}
+          <div className="max-w-xl">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-sm mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-8"
             >
-              <span className="w-2 h-2 rounded-full bg-burgundy-light animate-pulse" />
+              <Zap className="w-4 h-4" />
               Authorized Xerox Distributor
             </motion.div>
-          </ScrollReveal>
 
-          <ScrollReveal delay={0.1}>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-              Powering Your Business with{" "}
-              <span className="text-gradient-tech">Innovative</span>{" "}
-              IT Solutions
-            </h1>
-          </ScrollReveal>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6"
+            >
+              Empowering Your Business with{" "}
+              <span className="text-primary">Advanced IT Solutions</span>
+            </motion.h1>
 
-          <ScrollReveal delay={0.2}>
-            <p className="text-lg sm:text-xl text-white/70 max-w-2xl mb-10 leading-relaxed">
-              From server infrastructure to custom software development, we deliver comprehensive technology solutions that drive growth and efficiency for businesses of all sizes.
-            </p>
-          </ScrollReveal>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-lg text-muted-foreground max-w-lg mb-10 leading-relaxed"
+            >
+              As a full-service managed IT provider, we deliver comprehensive technology solutions including infrastructure, security, software development, and exclusive Xerox products to drive your business forward.
+            </motion.p>
 
-          <ScrollReveal delay={0.3}>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-16"
+            >
               <Link
-                to="/services"
+                to="/contact"
                 className="btn-primary inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold group"
               >
-                Explore Solutions
+                Get Started
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-white border-2 border-white/30 hover:bg-white/10 transition-all"
+                to="/services"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-primary border-2 border-primary/30 hover:border-primary hover:bg-primary/5 transition-all"
               >
-                <Play className="w-5 h-5" />
-                Watch Demo
+                Explore Services
               </Link>
-            </div>
-          </ScrollReveal>
+            </motion.div>
 
-          {/* Stats */}
-          <ScrollReveal delay={0.4}>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10">
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex items-center gap-8 sm:gap-12"
+            >
               {stats.map((stat, index) => (
-                <motion.div
+                <StatCard
                   key={stat.label}
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  label={stat.label}
+                  delay={0.5 + index * 0.1}
+                />
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right Content - Feature Cards */}
+          <div className="relative">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6">
+              {/* Top row - 2 cards */}
+              <div className="col-span-1 pt-8">
+                <FeatureCard {...featureCards[0]} delay={0.3} />
+              </div>
+              <div className="col-span-1">
+                <FeatureCard {...featureCards[1]} delay={0.4} />
+              </div>
+              
+              {/* Bottom row - 1 card + stat */}
+              <div className="col-span-1">
+                <FeatureCard {...featureCards[2]} delay={0.5} />
+              </div>
+              <div className="col-span-1 pt-4">
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                  className="relative"
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.02,
+                    boxShadow: "0 20px 40px -15px rgba(139, 29, 44, 0.15)"
+                  }}
+                  className="p-6 rounded-2xl bg-gradient-to-br from-white to-warm-gray/30 border border-border/50 shadow-card cursor-pointer transition-all duration-300 hover:border-primary/20"
                 >
-                  <div className="text-3xl sm:text-4xl font-display font-bold text-white mb-1">
-                    <Counter end={stat.value} suffix={stat.suffix} />
+                  <div className="text-4xl font-display font-bold text-primary mb-2">
+                    99.9%
                   </div>
-                  <div className="text-sm text-white/60">{stat.label}</div>
+                  <div className="text-sm text-muted-foreground flex items-center gap-2">
+                    <Clock className="w-4 h-4" />
+                    Uptime Guarantee
+                  </div>
                 </motion.div>
-              ))}
+              </div>
             </div>
-          </ScrollReveal>
+          </div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2"
-        >
-          <motion.div className="w-1.5 h-1.5 rounded-full bg-white/60" />
-        </motion.div>
-      </motion.div>
     </section>
   );
 };
