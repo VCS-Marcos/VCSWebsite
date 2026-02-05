@@ -7,8 +7,8 @@ const footerLinks = {
     { label: "Server Solutions", href: "/services/servers" },
     { label: "Networking", href: "/services/networking" },
     { label: "Cloud Services", href: "/services/cloud" },
-    { label: "CCTV Solutions", href: "/services/cctv" },
-    { label: "PABX Systems", href: "/services/pabx" },
+    { label: "Video Surveillance Solutions", href: "/services/video-surveillance" },
+    { label: "Telecom Solutions", href: "/services/telecom" },
     { label: "Software Development", href: "/services/software" },
   ],
   xerox: [
@@ -20,8 +20,6 @@ const footerLinks = {
   ],
   company: [
     { label: "About Us", href: "/about" },
-    { label: "Our Team", href: "/about/team" },
-    { label: "Partners", href: "/about/partners" },
     { label: "Careers", href: "/careers" },
     { label: "Contact", href: "/contact" },
   ],

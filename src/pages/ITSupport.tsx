@@ -33,7 +33,7 @@ const ITSupport = () => {
                             <ScrollReveal delay={0.2}>
                                 <div className="relative w-full max-w-lg aspect-square rounded-[3rem] overflow-hidden shadow-2xl group">
                                     <img
-                                        src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=2000"
+                                        src="/img/services/it-support.jpg"
                                         alt="IT Support"
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                     />

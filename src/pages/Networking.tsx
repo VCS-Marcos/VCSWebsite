@@ -22,7 +22,7 @@ const Networking = () => {
                                     Networking <span className="text-burgundy">Solutions</span>
                                 </h1>
                                 <p className="text-xl text-muted-foreground leading-relaxed mb-10">
-                                    A robust network is the backbone of your digital operation. We design, implement, and secure enterprise-grade networking solutions that ensure your team stays connected, no matter where they are.
+                                    A robust network is the backbone of your digital operation. We provide comprehensive network solutions including advanced network security, structured cabling solutions, and enterprise-grade architecture that ensures your business stays connected and protected.
                                 </p>
                                 <div className="flex gap-4">
                                     <Link to="/contact" className="btn-primary px-8 py-4 rounded-full font-bold">
@@ -35,7 +35,7 @@ const Networking = () => {
                             <ScrollReveal delay={0.2}>
                                 <div className="relative aspect-square rounded-[2.5rem] overflow-hidden shadow-2xl group">
                                     <img
-                                        src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=2000"
+                                        src="/img/services/network-infrastructure.jpg"
                                         alt="Networking Infrastructure"
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
@@ -67,19 +67,19 @@ const Networking = () => {
                             description: "Firewall management, VPN setup, and intrusion prevention to protect your perimeter."
                         },
                         {
+                            icon: Network,
+                            title: "Structured Cabling",
+                            description: "Professional design and installation of robust cabling infrastructure for reliable data and voice transmission."
+                        },
+                        {
+                            icon: ShieldCheck,
+                            title: "Network Security",
+                            description: "Comprehensive security with firewall management, intrusion prevention, and secure endpoints."
+                        },
+                        {
                             icon: Globe,
-                            title: "SD-WAN",
-                            description: "Optimize your connectivity across multiple locations with intelligent traffic management."
-                        },
-                        {
-                            icon: Network,
-                            title: "Fiber Optics",
-                            description: "High-speed backbone cabling for data centers and high-bandwidth requirements."
-                        },
-                        {
-                            icon: Network,
-                            title: "Maintenance",
-                            description: "Continuous monitoring and proactive troubleshooting to prevent bottlenecks."
+                            title: "Comprehensive Solutions",
+                            description: "A full-package approach to your network needs, from initial design to ongoing optimization and support."
                         }
                     ].map((item, i) => (
                         <ScrollReveal key={item.title} delay={i * 0.1}>

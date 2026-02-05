@@ -2,14 +2,22 @@ import { motion } from "framer-motion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const partners = [
-  { name: "Xerox", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Xerox_logo.svg/2560px-Xerox_logo.svg.png" },
-  { name: "Microsoft", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/2048px-Microsoft_logo.svg.png" },
-  { name: "Cisco", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/1200px-Cisco_logo_blue_2016.svg.png" },
-  { name: "Dell", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dell_logo_2016.svg/2560px-Dell_logo_2016.svg.png" },
-  { name: "HP", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/2048px-HP_logo_2012.svg.png" },
-  { name: "VMware", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Vmware.svg/2560px-Vmware.svg.png" },
-  { name: "AWS", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1024px-Amazon_Web_Services_Logo.svg.png" },
-  { name: "Google Cloud", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/2560px-Google_Cloud_logo.svg.png" },
+  { name: "Xerox", logo: "/logos/xerox.png" },
+  { name: "Microsoft", logo: "/logos/microsoft.png" },
+  { name: "Cisco", logo: "/logos/cisco.png" },
+  { name: "Dell", logo: "/logos/dell.png" },
+  { name: "VMware", logo: "/logos/vmware.png" },
+  { name: "AWS", logo: "/logos/aws.png" },
+  { name: "Zoho", logo: "/logos/zoho.png" },
+  { name: "Symantec", logo: "/logos/symantec.png" },
+  { name: "Matrix Comsec", logo: "/logos/matrix.png" },
+  { name: "Kaspersky", logo: "/logos/kaspersky.png" },
+  { name: "Veeam", logo: "/logos/veeam.png" },
+  { name: "Sophos", logo: "/logos/sophos.png" },
+  { name: "Fortinet", logo: "/logos/fortinet.png" },
+  { name: "APC", logo: "/logos/apc.png" },
+  { name: "Supermicro", logo: "/logos/supermicro.png" },
+  { name: "Broadcom", logo: "/logos/broadcom.png" },
 ];
 
 export const PartnersSection = () => {

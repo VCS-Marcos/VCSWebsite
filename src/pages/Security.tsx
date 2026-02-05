@@ -33,7 +33,7 @@ const SecurityPage = () => {
                             <ScrollReveal delay={0.2}>
                                 <div className="relative aspect-square rounded-[3rem] overflow-hidden group">
                                     <img
-                                        src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=2000"
+                                        src="/img/services/cybersecurity.jpg"
                                         alt="Cybersecurity"
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                     />

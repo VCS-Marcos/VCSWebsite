@@ -4,7 +4,7 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { CheckCircle, Phone, Headphones, Globe, Mic, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const Pabx = () => {
+const Telecom = () => {
     return (
         <div className="min-h-screen bg-white">
             <Navbar />
@@ -20,7 +20,7 @@ const Pabx = () => {
                                     Communication Simplified
                                 </span>
                                 <h1 className="font-display text-5xl lg:text-7xl font-bold text-[#1A1A1A] mb-8 leading-tight">
-                                    PABX <span className="text-burgundy">Systems</span>
+                                    Telecom <span className="text-burgundy">Solutions</span>
                                 </h1>
                                 <p className="text-xl text-muted-foreground leading-relaxed mb-10">
                                     Modern VoIP and telecommunication systems designed for clear, seamless team communication globally. We provide scalable infrastructure that grows with your business voice requirements.
@@ -34,8 +34,8 @@ const Pabx = () => {
                             <ScrollReveal delay={0.2}>
                                 <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl group">
                                     <img
-                                        src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&q=80&w=2000"
-                                        alt="PABX Systems"
+                                        src="/img/services/telecom-solutions.jpg"
+                                        alt="Telecom Solutions"
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                     />
                                     <div className="absolute inset-0 bg-burgundy/5 pointer-events-none" />
@@ -73,7 +73,7 @@ const Pabx = () => {
                     <div className="lg:w-1/2">
                         <ScrollReveal>
                             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                                <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&q=80&w=1500" alt="Meeting" />
+                                <img src="/img/services/meeting-telecom.jpg" alt="Meeting" />
                                 <div className="absolute inset-0 bg-burgundy/20" />
                             </div>
                         </ScrollReveal>
@@ -119,4 +119,4 @@ const Pabx = () => {
     );
 };
 
-export default Pabx;
+export default Telecom;

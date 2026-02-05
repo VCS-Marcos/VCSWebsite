@@ -35,7 +35,7 @@ const ManagedIT = () => {
                             <ScrollReveal delay={0.2}>
                                 <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl group">
                                     <img
-                                        src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=2000"
+                                        src="/img/services/managed-it.jpg"
                                         alt="Managed IT Services"
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
@@ -119,7 +119,7 @@ const ManagedIT = () => {
                             <div className="aspect-square rounded-full border-2 border-burgundy/20 p-8 relative overflow-hidden transition-all duration-700 bg-slate-50">
                                 <div className="absolute inset-0 bg-burgundy/5 animate-pulse" />
                                 <img
-                                    src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=2000"
+                                    src="/img/services/it-team.jpg"
                                     alt="IT Team"
                                     className="rounded-full w-full h-full object-cover shadow-2xl relative z-10 transition-transform duration-500 group-hover:scale-110"
                                 />

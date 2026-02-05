@@ -4,17 +4,16 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const services = [
   {
-    icon: Settings,
-    title: "Managed IT Services",
-    description: "Proactive 24/7 monitoring, maintenance, and support for your entire IT ecosystem to minimize downtime.",
-    href: "/services/managed-it",
-    highlighted: true,
-  },
-  {
     icon: Server,
     title: "Server Infrastructure",
     description: "Robust cloud, hybrid, and on-premise server management ensuring high availability and data integrity.",
     href: "/services/servers",
+  },
+  {
+    icon: Cloud,
+    title: "Cloud Solutions",
+    description: "Seamlessly migrate to the cloud or optimize your existing cloud infrastructure with multi-cloud strategies.",
+    href: "/services/cloud",
   },
   {
     icon: Network,
@@ -30,15 +29,16 @@ const services = [
   },
   {
     icon: Cctv,
-    title: "CCTV & Security",
+    title: "Video Surveillance",
     description: "Advanced IP-based surveillance systems with remote monitoring for comprehensive physical security.",
-    href: "/services/cctv",
+    href: "/services/video-surveillance",
   },
   {
-    icon: Phone,
-    title: "PABX Systems",
-    description: "Modern VoIP and telecommunication systems designed for clear, seamless team communication globally.",
-    href: "/services/pabx",
+    icon: Settings,
+    title: "Managed IT Services",
+    description: "Proactive 24/7 monitoring, maintenance, and support for your entire IT ecosystem to minimize downtime.",
+    href: "/services/managed-it",
+    highlighted: true,
   },
 ];
 
@@ -69,8 +69,8 @@ export const ServicesSection = () => {
                 className="group p-10 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full hover:-translate-y-1"
               >
                 <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-8 transition-colors duration-300 ${service.highlighted
-                    ? "bg-burgundy text-white"
-                    : "bg-[#F5E6E8] text-burgundy"
+                  ? "bg-burgundy text-white"
+                  : "bg-[#F5E6E8] text-burgundy"
                   }`}>
                   <service.icon className="w-6 h-6" />
                 </div>

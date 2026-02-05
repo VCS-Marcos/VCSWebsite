@@ -33,7 +33,7 @@ const CloudPage = () => {
                             <ScrollReveal delay={0.2}>
                                 <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl group">
                                     <img
-                                        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000"
+                                        src="/img/services/cloud-services.jpg"
                                         alt="Cloud Services"
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                     />

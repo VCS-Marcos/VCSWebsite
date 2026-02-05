@@ -1,184 +1,121 @@
 import { Link } from "react-router-dom";
-import { Code, Monitor, Smartphone, Database, Cloud, ArrowRight, CheckCircle } from "lucide-react";
+import { Users, MonitorSmartphone, MapPin, Code, Award, ArrowRight, CheckCircle } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
-const solutions = [
+const softwareProducts = [
   {
-    icon: Monitor,
-    title: "Enterprise Resource Planning (ERP)",
-    description: "Comprehensive ERP solutions to streamline your business operations, from inventory to finance.",
-    features: ["Inventory Management", "Financial Accounting", "HR Management", "Supply Chain"],
+    title: "VCS HRS Solution",
+    description: "A comprehensive in-house–developed Human Resource & Payroll Solution designed to simplify employee management while ensuring full compliance with local employment regulations.",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1500&auto=format&fit=crop",
+    features: ["Payroll Processing", "Leave Management", "Statutory Compliance", "Employee Records"],
+    href: "/software/hrs",
   },
   {
-    icon: Database,
-    title: "Customer Relationship Management",
-    description: "CRM solutions that help you build stronger customer relationships and drive sales growth.",
-    features: ["Sales Pipeline", "Customer Analytics", "Marketing Automation", "Support Tickets"],
+    title: "Point of Sale (POS) Solution",
+    description: "Feature-rich, scalable retail management system designed to streamline sales operations for hospitality, retail, and quick-service businesses.",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1500&auto=format&fit=crop",
+    features: ["Fast Sales Processing", "Multi-Device Support", "Inventory Control", "Loyalty Systems"],
+    href: "/software/pos",
   },
   {
-    icon: Code,
-    title: "Custom Web Applications",
-    description: "Tailored web applications built to address your specific business challenges and workflows.",
-    features: ["Responsive Design", "API Integrations", "Real-time Features", "Secure Authentication"],
+    title: "AstroNET",
+    description: "Powerful in-house–developed Inbound Tour Operations Management System that integrates reservations, operations, and accounting into one unified platform.",
+    image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1500&auto=format&fit=crop",
+    features: ["Reservation Management", "Rate Configuration", "Operations Tracking", "B2B Online Portal"],
+    href: "/software/astronet",
   },
   {
-    icon: Smartphone,
-    title: "Mobile Applications",
-    description: "Native and cross-platform mobile apps that extend your business reach to mobile users.",
-    features: ["iOS & Android", "Offline Support", "Push Notifications", "GPS & Location"],
+    title: "Custom Application Development",
+    description: "End-to-end custom development services, designing and building software solutions tailored precisely to your unique business needs.",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1500&auto=format&fit=crop",
+    features: ["Web Applications", "Mobile Applications", "Enterprise Systems", "System Integration"],
+    href: "/software/custom",
   },
   {
-    icon: Cloud,
-    title: "Cloud-Based Solutions",
-    description: "Modern cloud applications with scalability, reliability, and accessibility built-in.",
-    features: ["Auto-scaling", "High Availability", "Data Backup", "Global CDN"],
+    title: "Software Licensing",
+    description: "Genuine software licenses for globally recognized technology brands, including Sage, QuickBooks, Adobe, Autodesk, and more.",
+    image: "https://images.unsplash.com/photo-1560472355-536de3962603?q=80&w=1500&auto=format&fit=crop",
+    features: ["Authorized Partner", "License Advisory", "New & Renewals", "Multi-Brand Procurement"],
+    href: "/software/licensing",
   },
-];
-
-const technologies = [
-  "React", "Node.js", "Python", ".NET", "Java", "PostgreSQL", "MongoDB", "AWS", "Azure", "Docker", "Kubernetes", "TypeScript"
 ];
 
 const Software = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-background via-background to-warm-gray/30">
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-tech-blue/5 to-transparent" />
+      <section className="relative pt-40 pb-24 overflow-hidden bg-[#F5F7FA]">
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-burgundy/5 to-transparent" />
+          <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-burgundy/5 to-transparent" />
         </div>
         <div className="container-custom relative z-10">
           <ScrollReveal>
             <div className="max-w-3xl">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                Software Solutions
+              <span className="inline-block px-4 py-1.5 rounded-full bg-burgundy/10 text-burgundy text-sm font-semibold mb-6">
+                In-House & Partner Solutions
               </span>
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                In-House Software Development
+              <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-[#1A1A1A] mb-8 leading-tight">
+                Our <span className="text-burgundy">Software Ecosystem</span>
               </h1>
-              <p className="text-xl text-muted-foreground mb-8">
-                We build custom software solutions that solve real business problems. From enterprise applications to mobile apps, our team delivers excellence.
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                From specialized in-house systems like AstroNET and VCS HRS to global authorized software licensing, we provide the technology to power your growth.
               </p>
-              <Link
-                to="/contact"
-                className="btn-primary inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold group"
-              >
-                Start Your Project
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Technologies */}
-      <section className="py-12 bg-card border-b border-border">
+      {/* Software List */}
+      <section className="py-24">
         <div className="container-custom">
-          <ScrollReveal>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <span className="text-muted-foreground text-sm font-medium mr-4">Technologies we use:</span>
-              {technologies.map((tech) => (
-                <span key={tech} className="px-4 py-2 bg-muted rounded-full text-sm font-medium text-foreground">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Solutions */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                Our Solutions
-              </span>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">
-                Software Solutions We Deliver
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                From concept to deployment, we build software that drives business value.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="space-y-12">
-            {solutions.map((solution, index) => (
-              <ScrollReveal key={solution.title}>
-                <div className={`grid lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                }`}>
-                  <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                    <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-                      <solution.icon className="w-7 h-7 text-primary" />
+          <div className="space-y-32">
+            {softwareProducts.map((product, index) => (
+              <ScrollReveal key={product.title}>
+                <div className={`grid lg:grid-cols-2 gap-16 items-center ${index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                  }`}>
+                  <div className={`space-y-8 ${index % 2 === 1 ? "lg:order-2" : ""}`}>
+                    <div>
+                      <h2 className="font-display text-4xl font-bold text-[#1A1A1A] mb-4">
+                        {product.title}
+                      </h2>
+                      <div className="w-20 h-1.5 bg-burgundy rounded-full" />
                     </div>
-                    <h3 className="font-display text-2xl font-bold text-foreground mb-4">
-                      {solution.title}
-                    </h3>
-                    <p className="text-lg text-muted-foreground mb-6">
-                      {solution.description}
+                    <p className="text-lg text-muted-foreground leading-relaxed">
+                      {product.description}
                     </p>
-                    <ul className="grid grid-cols-2 gap-3 mb-6">
-                      {solution.features.map((feature) => (
-                        <li key={feature} className="flex items-center gap-2">
-                          <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                          <span className="text-foreground">{feature}</span>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {product.features.map((feature) => (
+                        <li key={feature} className="flex items-center gap-3 group">
+                          <CheckCircle className="w-5 h-5 text-burgundy flex-shrink-0 group-hover:scale-110 transition-transform" />
+                          <span className="text-foreground font-medium">{feature}</span>
                         </li>
                       ))}
                     </ul>
-                  </div>
-                  <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                    <div className="aspect-video rounded-2xl bg-gradient-to-br from-primary/10 to-tech-blue/10 flex items-center justify-center relative overflow-hidden">
-                      <div className="absolute inset-0 grid-pattern opacity-30" />
-                      <solution.icon className="w-24 h-24 text-primary/20" />
+                    <div className="pt-4">
+                      <Link
+                        to={product.href}
+                        className="btn-primary inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-semibold group"
+                      >
+                        Learn More
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </Link>
                     </div>
                   </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section className="section-padding bg-gradient-subtle">
-        <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                Our Process
-              </span>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">
-                How We Deliver Your Software
-              </h2>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { step: "01", title: "Discovery", description: "We analyze your requirements and define the project scope." },
-              { step: "02", title: "Design", description: "Our team creates wireframes and prototypes for your approval." },
-              { step: "03", title: "Development", description: "We build your solution using agile methodology with regular updates." },
-              { step: "04", title: "Deployment", description: "We deploy, test, and provide ongoing support for your solution." },
-            ].map((phase, index) => (
-              <ScrollReveal key={phase.step} delay={index * 0.1}>
-                <div className="relative">
-                  <div className="text-6xl font-display font-bold text-primary/10 mb-4">
-                    {phase.step}
+                  <div className={`${index % 2 === 1 ? "lg:order-1" : ""} group`}>
+                    <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
+                    </div>
                   </div>
-                  <h3 className="font-display text-xl font-bold text-foreground mb-2">
-                    {phase.title}
-                  </h3>
-                  <p className="text-muted-foreground">
-                    {phase.description}
-                  </p>
                 </div>
               </ScrollReveal>
             ))}
@@ -187,21 +124,21 @@ const Software = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-primary">
+      <section className="section-padding bg-[#1A1A1A] text-white">
         <div className="container-custom text-center">
           <ScrollReveal>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-primary-foreground mb-6">
-              Have a Software Project in Mind?
+            <h2 className="font-display text-4xl sm:text-5xl font-bold mb-8">
+              Need a <span className="text-burgundy-light">Custom Solution</span>?
             </h2>
-            <p className="text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-              Let's discuss how we can bring your ideas to life with custom software solutions.
+            <p className="text-xl text-white/60 mb-12 max-w-2xl mx-auto">
+              Our development team specializes in building applications tailored to unique business challenges. Let's discuss your requirements.
             </p>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-primary font-semibold hover:bg-white/90 transition-colors"
+              className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-burgundy text-white font-bold hover:bg-burgundy-dark transition-all shadow-burgundy hover:scale-105"
             >
-              Start Your Project
-              <ArrowRight className="w-5 h-5" />
+              Consult Our Team
+              <ArrowRight className="w-6 h-6" />
             </Link>
           </ScrollReveal>
         </div>

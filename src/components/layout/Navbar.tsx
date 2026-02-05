@@ -22,8 +22,10 @@ const navItems = [
       {
         title: "Security & Communication",
         items: [
-          { label: "CCTV Solutions", href: "/services/cctv", icon: Cctv, description: "Surveillance & security systems" },
-          { label: "PABX Systems", href: "/services/pabx", icon: Phone, description: "Business phone systems" },
+          { label: "Video Surveillance Solutions", href: "/services/video-surveillance", icon: Cctv, description: "Advanced security camera systems" },
+          { label: "Access Control Solutions", href: "/services/access-control", icon: Shield, description: "Secure entry management" },
+          { label: "Time & Attendance", href: "/services/time-attendance", icon: MonitorSmartphone, description: "Workforce management solutions" },
+          { label: "Telecom Solutions", href: "/services/telecom", icon: Phone, description: "Business phone systems" },
           { label: "Cybersecurity", href: "/services/security", icon: Shield, description: "Protect your digital assets" },
         ]
       },
@@ -62,29 +64,29 @@ const navItems = [
   {
     label: "Software",
     href: "/software",
-    megaMenu: false,
-  },
-  {
-    label: "About",
-    href: "/about",
     megaMenu: true,
     sections: [
       {
-        title: "Company",
+        title: "In-House Solutions",
         items: [
-          { label: "About Us", href: "/about", icon: Building, description: "Our story and mission" },
-          { label: "Our Team", href: "/about/team", icon: Users, description: "Meet our experts" },
-          { label: "Partners", href: "/about/partners", icon: Award, description: "Our trusted partners" },
+          { label: "VCS HRS", href: "/software/hrs", icon: Users, description: "HR & Payroll Management" },
+          { label: "AstroNET", href: "/software/astronet", icon: MapPin, description: "Tour Operations System" },
+          { label: "Custom Applications", href: "/software/custom", icon: Code, description: "Tailored software development" },
         ]
       },
       {
-        title: "Contact",
+        title: "Partner Solutions",
         items: [
-          { label: "Contact Us", href: "/contact", icon: Mail, description: "Get in touch" },
-          { label: "Locations", href: "/contact/locations", icon: MapPin, description: "Find us" },
+          { label: "POS Solutions", href: "/software/pos", icon: MonitorSmartphone, description: "Retail & Retail Management" },
+          { label: "Software Licensing", href: "/software/licensing", icon: Award, description: "Authorized brand licensing" },
         ]
       }
     ]
+  },
+  {
+    label: "About Us",
+    href: "/about",
+    megaMenu: false,
   },
   {
     label: "Contact",
@@ -117,19 +119,18 @@ export const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-card/95 backdrop-blur-xl shadow-card border-b border-border"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        ? "bg-card/95 backdrop-blur-xl shadow-card border-b border-border"
+        : "bg-transparent"
+        }`}
     >
       <div className="container-custom">
         <nav className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
-            <img 
-              src={logo} 
-              alt="VCS Logo" 
+            <img
+              src={logo}
+              alt="VCS Logo"
               className="h-12 w-auto transition-all duration-300"
             />
           </Link>
@@ -145,18 +146,16 @@ export const Navbar = () => {
               >
                 <Link
                   to={item.href}
-                  className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-lg ${
-                    location.pathname.startsWith(item.href)
-                      ? "text-primary"
-                      : "text-foreground hover:text-primary hover:bg-muted/50"
-                  }`}
+                  className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-lg ${location.pathname.startsWith(item.href)
+                    ? "text-primary"
+                    : "text-foreground hover:text-primary hover:bg-muted/50"
+                    }`}
                 >
                   {item.label}
                   {item.megaMenu && (
                     <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${
-                        activeMenu === item.label ? "rotate-180" : ""
-                      }`}
+                      className={`w-4 h-4 transition-transform duration-200 ${activeMenu === item.label ? "rotate-180" : ""
+                        }`}
                     />
                   )}
                 </Link>

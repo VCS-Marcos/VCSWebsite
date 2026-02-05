@@ -4,7 +4,7 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { CheckCircle, Cctv, Shield, Smartphone, Monitor, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const CctvPage = () => {
+const VideoSurveillance = () => {
     return (
         <div className="min-h-screen bg-white">
             <Navbar />
@@ -19,7 +19,7 @@ const CctvPage = () => {
                                     Intelligent Surveillance
                                 </span>
                                 <h1 className="font-display text-5xl lg:text-7xl font-bold text-[#1A1A1A] mb-8 leading-tight">
-                                    CCTV & <span className="text-burgundy">Security</span>
+                                    Video Surveillance <span className="text-burgundy">Solutions</span>
                                 </h1>
                                 <p className="text-xl text-muted-foreground leading-relaxed mb-10">
                                     Protect what matters most with advanced IP-based surveillance systems. Our solutions offer high-definition video, remote monitoring, and intelligent analytics to give you complete peace of mind.
@@ -33,8 +33,8 @@ const CctvPage = () => {
                             <ScrollReveal delay={0.2}>
                                 <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl group">
                                     <img
-                                        src="https://images.unsplash.com/photo-1557597774-9d2739f85a1a?auto=format&fit=crop&q=80&w=2000"
-                                        alt="CCTV & Security"
+                                        src="https://images.unsplash.com/photo-1557597774-9d2739f85a76?q=80&w=1500&auto=format&fit=crop"
+                                        alt="Video Surveillance Solutions"
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
                                     <div className="absolute inset-0 bg-burgundy/5 pointer-events-none" />
@@ -135,4 +135,4 @@ const CctvPage = () => {
     );
 };
 
-export default CctvPage;
+export default VideoSurveillance;

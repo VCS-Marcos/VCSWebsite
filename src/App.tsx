@@ -13,12 +13,19 @@ import NotFound from "./pages/NotFound";
 import ManagedIT from "./pages/ManagedIT";
 import Servers from "./pages/Servers";
 import Networking from "./pages/Networking";
-import Cctv from "./pages/Cctv";
-import Pabx from "./pages/Pabx";
+import VideoSurveillance from "./pages/VideoSurveillance";
+import Telecom from "./pages/Telecom";
+import AccessControl from "./pages/AccessControl";
+import TimeAttendance from "./pages/TimeAttendance";
 import Cloud from "./pages/Cloud";
 import Security from "./pages/Security";
 import DataCenters from "./pages/DataCenters";
 import ITSupport from "./pages/ITSupport";
+import HRS from "./pages/software/HRS";
+import POS from "./pages/software/POS";
+import AstroNET from "./pages/software/AstroNET";
+import CustomSoftware from "./pages/software/CustomSoftware";
+import Licensing from "./pages/software/Licensing";
 import ScrollToTop from "./components/ui/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -37,8 +44,10 @@ const App = () => (
           <Route path="/services/servers" element={<Servers />} />
           <Route path="/services/networking" element={<Networking />} />
           <Route path="/services/software" element={<Software />} />
-          <Route path="/services/cctv" element={<Cctv />} />
-          <Route path="/services/pabx" element={<Pabx />} />
+          <Route path="/services/video-surveillance" element={<VideoSurveillance />} />
+          <Route path="/services/telecom" element={<Telecom />} />
+          <Route path="/services/access-control" element={<AccessControl />} />
+          <Route path="/services/time-attendance" element={<TimeAttendance />} />
           <Route path="/services/cloud" element={<Cloud />} />
           <Route path="/services/security" element={<Security />} />
           <Route path="/services/data-centers" element={<DataCenters />} />
@@ -46,6 +55,11 @@ const App = () => (
           <Route path="/xerox" element={<Xerox />} />
           <Route path="/xerox/*" element={<Xerox />} />
           <Route path="/software" element={<Software />} />
+          <Route path="/software/hrs" element={<HRS />} />
+          <Route path="/software/pos" element={<POS />} />
+          <Route path="/software/astronet" element={<AstroNET />} />
+          <Route path="/software/custom" element={<CustomSoftware />} />
+          <Route path="/software/licensing" element={<Licensing />} />
           <Route path="/about" element={<About />} />
           <Route path="/about/*" element={<About />} />
           <Route path="/contact" element={<Contact />} />

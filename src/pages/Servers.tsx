@@ -33,7 +33,7 @@ const Servers = () => {
                             <ScrollReveal delay={0.2}>
                                 <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">
                                     <img
-                                        src="https://images.unsplash.com/photo-1558494949-ef010cbdcc48?auto=format&fit=crop&q=80&w=2000"
+                                        src="https://images.unsplash.com/photo-1558494949-ef010cbdcc48?q=80&w=1500&auto=format&fit=crop"
                                         alt="Server Infrastructure"
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500"
                                     />
