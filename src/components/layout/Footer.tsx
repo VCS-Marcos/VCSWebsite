@@ -7,21 +7,27 @@ const footerLinks = {
     { label: "Server Solutions", href: "/services/servers" },
     { label: "Networking", href: "/services/networking" },
     { label: "Cloud Services", href: "/services/cloud" },
-    { label: "Video Surveillance Solutions", href: "/services/video-surveillance" },
+    { label: "Video Surveillance", href: "/services/video-surveillance" },
     { label: "Telecom Solutions", href: "/services/telecom" },
-    { label: "Software Development", href: "/services/software" },
+    { label: "Cybersecurity", href: "/services/security" },
   ],
   xerox: [
-    { label: "Multifunction Printers", href: "/xerox/multifunction" },
-    { label: "Production Printers", href: "/xerox/production" },
-    { label: "Desktop Printers", href: "/xerox/desktop" },
-    { label: "Product Catalog", href: "/xerox/catalog" },
-    { label: "Brochures", href: "/xerox/brochures" },
+    { label: "Home Office Printers", href: "/xerox#home-office" },
+    { label: "Workgroup Printers", href: "/xerox#medium-workgroups" },
+    { label: "Enterprise Solutions", href: "/xerox#heavy-duty" },
+    { label: "Authorized Support", href: "/xerox#benefits" },
+  ],
+  software: [
+    { label: "VCS HRS (Payroll)", href: "/software/hrs" },
+    { label: "AstroNET (Tourism)", href: "/software/astronet" },
+    { label: "POS Solutions", href: "/software/pos" },
+    { label: "Custom Development", href: "/software/custom" },
+    { label: "Software Licensing", href: "/software/licensing" },
   ],
   company: [
     { label: "About Us", href: "/about" },
     { label: "Careers", href: "/careers" },
-    { label: "Contact", href: "/contact" },
+    { label: "Contact Us", href: "/contact" },
   ],
 };
 
@@ -37,7 +43,7 @@ export const Footer = () => {
     <footer className="bg-navy text-white/90">
       {/* Main Footer */}
       <div className="container-custom section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link to="/" className="inline-block mb-6">
@@ -67,6 +73,24 @@ export const Footer = () => {
             <h3 className="font-display font-semibold text-lg mb-6">Solutions</h3>
             <ul className="space-y-3">
               {footerLinks.solutions.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.href}
+                    className="text-white/70 hover:text-white transition-colors flex items-center gap-1 group"
+                  >
+                    {link.label}
+                    <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Software */}
+          <div>
+            <h3 className="font-display font-semibold text-lg mb-6">Software</h3>
+            <ul className="space-y-3">
+              {footerLinks.software.map((link) => (
                 <li key={link.label}>
                   <Link
                     to={link.href}

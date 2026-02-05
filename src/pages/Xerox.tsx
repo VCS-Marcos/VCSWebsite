@@ -1,50 +1,104 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Printer, FileText, Download, ArrowRight, Phone, Mail, Award, Settings, Headphones, Package, GraduationCap, Wrench, RefreshCw, CreditCard } from "lucide-react";
+import { Printer, FileText, Download, ArrowRight, Phone, Mail, Award, Settings, Headphones, Package, GraduationCap, Wrench, RefreshCw, CreditCard, ZoomIn, X } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import xeroxPrinter from "@/assets/xerox-printer.jpg";
+import xeroxB235 from "@/assets/xerox-b235.png";
+import xeroxC325 from "@/assets/xerox-c325.png";
+import xeroxB415 from "@/assets/xerox-b415.png";
+import xeroxC415 from "@/assets/xerox-c415.png";
+import xeroxB7100 from "@/assets/xerox-b7100.png";
+import xeroxC7100 from "@/assets/xerox-c7100.png";
+import xeroxC8200 from "@/assets/xerox-c8200.png";
+import xeroxB8200 from "@/assets/xerox-b8200.png";
 
 const productCategories = [
   {
-    title: "Multifunction Printers",
-    description: "All-in-one printing, copying, scanning, and faxing solutions for businesses of all sizes.",
+    title: "Home Office & Small Teams",
+    description: "Compact, affordable, and easy-to-use solutions designed to fit into small spaces while delivering professional results.",
+    ctaLabel: "Contact Us for Details",
+    ctaLink: "/contact",
     products: [
-      { name: "Xerox VersaLink C7100 Series", type: "Color MFP" },
-      { name: "Xerox AltaLink C8100 Series", type: "Color MFP" },
-      { name: "Xerox PrimeLink C9100 Series", type: "Color MFP" },
-      { name: "Xerox VersaLink B7100 Series", type: "Mono MFP" },
+      {
+        name: "Xerox B235",
+        type: "Black & White MFP",
+        description: "Reliable and efficient, perfect for personal or small team use.",
+        image: xeroxB235,
+        brochureLink: "/brochures/xerox-b235-brochure.pdf"
+      },
+      {
+        name: "Xerox C325",
+        type: "Color MFP",
+        description: "Vibrant color and cloud connectivity in a footprint that fits anywhere.",
+        image: xeroxC325,
+        brochureLink: "/brochures/xerox-c325-brochure.pdf"
+      },
     ],
   },
   {
-    title: "Production Printers",
-    description: "High-volume printing solutions for commercial print operations and enterprise environments.",
+    title: "Medium Workgroups",
+    description: "Robust performers that balance performance, security, and document management features for growing teams.",
+    ctaLabel: "Contact Us for Details",
+    ctaLink: "/contact",
     products: [
-      { name: "Xerox Iridesse Production Press", type: "Digital Press" },
-      { name: "Xerox Versant 4100 Press", type: "Digital Press" },
-      { name: "Xerox PrimeLink B9100", type: "Production" },
-      { name: "Xerox Nuvera", type: "Production" },
+      {
+        name: "Xerox B415",
+        type: "Black & White MFP",
+        description: "High-productivity mono printer with advanced workflow features.",
+        image: xeroxB415,
+        brochureLink: "/brochures/xerox-b415-brochure.pdf"
+      },
+      {
+        name: "Xerox C415",
+        type: "Color MFP",
+        description: "Exceptional color quality and reliability for busy office environments.",
+        image: xeroxC415,
+        brochureLink: "/brochures/xerox-c415-brochure.pdf"
+      },
     ],
   },
   {
-    title: "Desktop Printers",
-    description: "Compact and efficient printers for personal and small office use.",
+    title: "Heavy Duty / Enterprise",
+    description: "High-volume powerhouses with advanced finishing, scalability, and security for large scale document production.",
+    ctaLabel: "Contact Us for Details",
+    ctaLink: "/contact",
     products: [
-      { name: "Xerox C310", type: "Color Printer" },
-      { name: "Xerox B310", type: "Mono Printer" },
-      { name: "Xerox C410", type: "Color Printer" },
-      { name: "Xerox B410", type: "Mono Printer" },
+      {
+        name: "Xerox B7100 Series",
+        type: "Black & White MFP",
+        description: "Enterprise-grade performance with seamless fleet integration.",
+        image: xeroxB7100,
+        brochureLink: "/brochures/xerox-b7100-brochure.pdf"
+      },
+      {
+        name: "Xerox C7100 Series",
+        type: "Color MFP",
+        description: "Versatile and secure, designed for high-impact communication.",
+        image: xeroxC7100,
+        brochureLink: "/brochures/xerox-c7100-brochure.pdf"
+      },
+      {
+        name: "Xerox C8200 Series",
+        type: "Color MFP",
+        description: "Unmatched color precision and professional-grade finishing.",
+        image: xeroxC8200,
+        brochureLink: "/brochures/xerox-c8200-brochure.pdf"
+      },
+      {
+        name: "Xerox B8200 Series",
+        type: "Digital Press",
+        description: "Production-level speeds and quality for the most demanding environments.",
+        image: xeroxB8200,
+        brochureLink: "/brochures/xerox-b8200-brochure.pdf"
+      },
     ],
   },
 ];
 
-const brochures = [
-  { title: "Multifunction Printers Catalog 2024", size: "2.4 MB" },
-  { title: "Production Printing Solutions", size: "3.1 MB" },
-  { title: "Desktop Printers Overview", size: "1.8 MB" },
-  { title: "Managed Print Services", size: "2.2 MB" },
-  { title: "Xerox Supplies & Consumables", size: "1.5 MB" },
-];
+
 
 const benefits = [
   {
@@ -90,53 +144,45 @@ const benefits = [
 ];
 
 const Xerox = () => {
+  const [selectedProduct, setSelectedProduct] = useState<{ name: string; image: string } | null>(null);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-background via-background to-warm-gray/30">
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-tech-blue/5 to-transparent" />
-        </div>
+      <section className="relative pt-40 pb-20 bg-[#F5F7FA] overflow-hidden">
         <div className="container-custom relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal>
               <div>
-                <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+                <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-6">
                   Authorized Xerox Partner
                 </span>
-                <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                  Xerox Document Solutions
+                <h1 className="font-display text-5xl lg:text-7xl font-bold text-[#1A1A1A] mb-8 leading-tight">
+                  Xerox Document <span className="text-primary">Solutions</span>
                 </h1>
-                <p className="text-xl text-muted-foreground mb-8">
+                <p className="text-xl text-muted-foreground leading-relaxed mb-10">
                   As the exclusive authorized distributor of Xerox products, we bring you world-class printing and document solutions backed by expert support.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex gap-4">
                   <Link
                     to="/contact"
-                    className="btn-primary inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold"
+                    className="btn-primary px-8 py-4 rounded-full font-bold"
                   >
                     Request a Quote
                   </Link>
-                  <a
-                    href="#brochures"
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-primary border-2 border-primary/30 hover:bg-primary/5 transition-all"
-                  >
-                    Download Brochures
-                  </a>
                 </div>
               </div>
             </ScrollReveal>
-            <ScrollReveal direction="left">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-primary/20 rounded-3xl blur-3xl" />
+            <ScrollReveal delay={0.2}>
+              <div className="relative aspect-square rounded-[2.5rem] overflow-hidden shadow-2xl group">
                 <img
                   src={xeroxPrinter}
                   alt="Xerox Printer"
-                  className="relative rounded-2xl shadow-2xl"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-primary/5 pointer-events-none" />
               </div>
             </ScrollReveal>
           </div>
@@ -156,7 +202,7 @@ const Xerox = () => {
               </p>
             </div>
           </ScrollReveal>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit, index) => (
               <ScrollReveal key={benefit.title} delay={index * 0.05}>
@@ -178,94 +224,104 @@ const Xerox = () => {
       </section>
 
       {/* Product Categories */}
-      <section className="section-padding">
+      <section className="section-padding overflow-hidden">
         <div className="container-custom">
           <ScrollReveal>
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-20">
               <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                Product Range
+                Explore Our Products
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">
-                Explore Our Xerox Products
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                Tailored Printing Solutions for Every Need
               </h2>
               <p className="text-lg text-muted-foreground">
-                From desktop printers to high-volume production presses, we have the right solution for your needs.
+                Categorized by usage type to help you find the perfect Xerox model for your workspace.
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            {productCategories.map((category, index) => (
-              <ScrollReveal key={category.title} delay={index * 0.1}>
-                <div className="card-elevated p-8 h-full">
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-                    <Printer className="w-7 h-7 text-primary" />
+          <div className="space-y-32">
+            {productCategories.map((category, catIndex) => (
+              <div
+                key={category.title}
+                id={catIndex === 0 ? "home-office" : catIndex === 1 ? "medium-workgroups" : "heavy-duty"}
+                className="relative scroll-mt-32"
+              >
+                <ScrollReveal>
+                  <div className="mb-12 border-b border-border pb-8">
+                    <div className="max-w-3xl">
+                      <h3 className="font-display text-3xl font-bold text-foreground mb-4">
+                        {category.title}
+                      </h3>
+                      <p className="text-muted-foreground text-lg leading-relaxed">
+                        {category.description}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="font-display text-2xl font-bold text-foreground mb-3">
-                    {category.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-6">
-                    {category.description}
-                  </p>
-                  <ul className="space-y-3">
-                    {category.products.map((product) => (
-                      <li key={product.name} className="flex justify-between items-center py-2 border-b border-border last:border-0">
-                        <span className="font-medium text-foreground">{product.name}</span>
-                        <span className="text-sm text-muted-foreground">{product.type}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    to="/contact"
-                    className="btn-outline w-full mt-6 flex items-center justify-center gap-2 px-6 py-3 rounded-full text-sm font-semibold"
-                  >
-                    Get Pricing
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
+                </ScrollReveal>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                  {category.products.map((product, prodIndex) => (
+                    <ScrollReveal key={product.name} delay={prodIndex * 0.1}>
+                      <div className="group bg-card rounded-2xl border border-border overflow-hidden hover:shadow-2xl transition-all duration-500 h-full flex flex-col">
+                        <div
+                          className="aspect-[4/3] overflow-hidden relative bg-white p-4 cursor-pointer group/img"
+                          onClick={() => setSelectedProduct({ name: product.name, image: product.image })}
+                        >
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                          />
+                          <div className="absolute top-4 left-4">
+                            <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-foreground text-xs font-bold rounded-full shadow-sm border border-border">
+                              {product.type}
+                            </span>
+                          </div>
+                          <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/5 flex items-center justify-center transition-colors">
+                            <div className="w-10 h-10 rounded-full bg-white/90 shadow-lg flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity">
+                              <ZoomIn className="w-5 h-5 text-primary" />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="p-6 flex flex-col flex-grow">
+                          <h4 className="font-display text-xl font-bold text-foreground mb-2">
+                            {product.name}
+                          </h4>
+                          <p className="text-sm text-muted-foreground mb-6 line-clamp-2">
+                            {product.description}
+                          </p>
+
+                          <div className="mt-auto pt-6 border-t border-border flex flex-col gap-3">
+                            <a
+                              href={product.brochureLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center justify-center gap-2 text-sm font-semibold text-primary py-2 hover:underline transition-all"
+                            >
+                              <Download className="w-4 h-4" />
+                              Download Brochure
+                            </a>
+                            <Link
+                              to="/contact"
+                              className="btn-outline w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold"
+                            >
+                              Contact Us
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </ScrollReveal>
+                  ))}
                 </div>
-              </ScrollReveal>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Brochures */}
-      <section id="brochures" className="section-padding bg-card">
-        <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                Resources
-              </span>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">
-                Download Brochures & Specifications
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Get detailed information about our Xerox products.
-              </p>
-            </div>
-          </ScrollReveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {brochures.map((brochure, index) => (
-              <ScrollReveal key={brochure.title} delay={index * 0.05}>
-                <button className="w-full card-elevated p-6 text-left group hover:border-primary/30">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                      <FileText className="w-6 h-6" />
-                    </div>
-                    <div className="flex-grow">
-                      <h3 className="font-semibold text-foreground mb-1">{brochure.title}</h3>
-                      <p className="text-sm text-muted-foreground">PDF • {brochure.size}</p>
-                    </div>
-                    <Download className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                  </div>
-                </button>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Contact CTA */}
       <section className="section-padding bg-primary">
@@ -302,6 +358,32 @@ const Xerox = () => {
       </section>
 
       <Footer />
+
+      <Dialog open={!!selectedProduct} onOpenChange={(open) => !open && setSelectedProduct(null)}>
+        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-white border-none shadow-2xl">
+          <DialogHeader className="sr-only">
+            <DialogTitle>{selectedProduct?.name}</DialogTitle>
+          </DialogHeader>
+          <div className="relative aspect-video sm:aspect-square md:aspect-video bg-white flex items-center justify-center p-8">
+            <button
+              onClick={() => setSelectedProduct(null)}
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/5 hover:bg-black/10 transition-colors"
+            >
+              <X className="w-6 h-6 text-foreground" />
+            </button>
+            {selectedProduct && (
+              <img
+                src={selectedProduct.image}
+                alt={selectedProduct.name}
+                className="max-w-full max-h-full object-contain"
+              />
+            )}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full bg-white/90 backdrop-blur-md shadow-xl border border-border">
+              <p className="font-display font-bold text-foreground">{selectedProduct?.name}</p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

@@ -47,16 +47,16 @@ const navItems = [
       {
         title: "Xerox Products",
         items: [
-          { label: "Multifunction Printers", href: "/xerox/multifunction", icon: Printer, description: "All-in-one printing solutions" },
-          { label: "Production Printers", href: "/xerox/production", icon: Printer, description: "High-volume printing" },
-          { label: "Desktop Printers", href: "/xerox/desktop", icon: MonitorSmartphone, description: "Office & personal printers" },
+          { label: "Home Office & Small Teams", href: "/xerox#home-office", icon: Printer, description: "Compact & efficient solutions" },
+          { label: "Medium Workgroups", href: "/xerox#medium-workgroups", icon: Printer, description: "Professional team printers" },
+          { label: "Heavy Duty / Enterprise", href: "/xerox#heavy-duty", icon: Printer, description: "High-volume print power" },
         ]
       },
       {
-        title: "Resources",
+        title: "Authorized Distributor",
         items: [
-          { label: "Product Catalog", href: "/xerox/catalog", icon: FileText, description: "Browse all Xerox products" },
-          { label: "Brochures & Specs", href: "/xerox/brochures", icon: FileText, description: "Download product brochures" },
+          { label: "Product Overview", href: "/xerox#products", icon: FileText, description: "Explore the full Xerox range" },
+          { label: "Partner Benefits", href: "/xerox#benefits", icon: Award, description: "Why buy from an authorized partner" },
         ]
       }
     ]
@@ -77,7 +77,7 @@ const navItems = [
       {
         title: "Partner Solutions",
         items: [
-          { label: "POS Solutions", href: "/software/pos", icon: MonitorSmartphone, description: "Retail & Retail Management" },
+          { label: "POS Solutions", href: "/software/pos", icon: MonitorSmartphone, description: "Retail Management Systems" },
           { label: "Software Licensing", href: "/software/licensing", icon: Award, description: "Authorized brand licensing" },
         ]
       }
