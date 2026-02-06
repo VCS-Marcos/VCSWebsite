@@ -42,17 +42,83 @@ const Contact = () => {
     company: "",
     service: "",
     message: "",
+    website_url: "", // Honeypot
+    _submit_time: Date.now().toString(), // Timestamp
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const validateForm = () => {
+    const newErrors: { [key: string]: string } = {};
+    const nameRegex = /^[a-zA-Z\s\-.]{2,50}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[\d\s\-+()]{7,20}$/;
+
+    if (!nameRegex.test(formData.name)) {
+      newErrors.name = "Name must be 2-50 characters (letters, spaces, hyphens, dots only).";
+    }
+    if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+    if (formData.phone && !phoneRegex.test(formData.phone)) {
+      newErrors.phone = "Invalid phone format.";
+    }
+    if (formData.message.length < 10 || formData.message.length > 2000) {
+      newErrors.message = "Message must be between 10 and 2000 characters.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setFormData({ name: "", email: "", phone: "", company: "", service: "", message: "" });
-      setIsSubmitted(false);
-    }, 3000);
+
+    if (!validateForm()) return;
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("/contact.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        setTimeout(() => {
+          setFormData({
+            name: "",
+            email: "",
+            phone: "",
+            company: "",
+            service: "",
+            message: "",
+            website_url: "",
+            _submit_time: Date.now().toString(),
+          });
+          setIsSubmitted(false);
+          setErrors({});
+        }, 3000);
+      } else {
+        alert(result.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Failed to send message. Please check your connection.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -162,9 +228,10 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-6 py-4 rounded-2xl border border-border bg-[#F5F7FA] text-foreground focus:outline-none focus:ring-2 focus:ring-burgundy/20 focus:border-burgundy transition-all"
+                        className={`w-full px-6 py-4 rounded-2xl border ${errors.name ? 'border-red-500' : 'border-border'} bg-[#F5F7FA] text-foreground focus:outline-none focus:ring-2 focus:ring-burgundy/20 focus:border-burgundy transition-all`}
                         placeholder="John Doe"
                       />
+                      {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-semibold text-[#1A1A1A]">Email Address *</label>
@@ -174,13 +241,25 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-6 py-4 rounded-2xl border border-border bg-[#F5F7FA] text-foreground focus:outline-none focus:ring-2 focus:ring-burgundy/20 focus:border-burgundy transition-all"
+                        className={`w-full px-6 py-4 rounded-2xl border ${errors.email ? 'border-red-500' : 'border-border'} bg-[#F5F7FA] text-foreground focus:outline-none focus:ring-2 focus:ring-burgundy/20 focus:border-burgundy transition-all`}
                         placeholder="john@company.sc"
                       />
+                      {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                     </div>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-[#1A1A1A]">Company Name</label>
+                      <input
+                        type="text"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        className="w-full px-6 py-4 rounded-2xl border border-border bg-[#F5F7FA] text-foreground focus:outline-none focus:ring-2 focus:ring-burgundy/20 focus:border-burgundy transition-all"
+                        placeholder="Company Ltd"
+                      />
+                    </div>
                     <div className="space-y-2">
                       <label className="text-sm font-semibold text-[#1A1A1A]">Phone Number</label>
                       <input
@@ -188,10 +267,14 @@ const Contact = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-6 py-4 rounded-2xl border border-border bg-[#F5F7FA] text-foreground focus:outline-none focus:ring-2 focus:ring-burgundy/20 focus:border-burgundy transition-all"
+                        className={`w-full px-6 py-4 rounded-2xl border ${errors.phone ? 'border-red-500' : 'border-border'} bg-[#F5F7FA] text-foreground focus:outline-none focus:ring-2 focus:ring-burgundy/20 focus:border-burgundy transition-all`}
                         placeholder="+248 123 4567"
                       />
+                      {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                     </div>
+                  </div>
+
+                  <div className="space-y-2">
                     <div className="space-y-2">
                       <label className="text-sm font-semibold text-[#1A1A1A]">Service Interested In</label>
                       <select
@@ -219,14 +302,26 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-6 py-4 rounded-2xl border border-border bg-[#F5F7FA] text-foreground focus:outline-none focus:ring-2 focus:ring-burgundy/20 focus:border-burgundy transition-all resize-none"
+                      className={`w-full px-6 py-4 rounded-2xl border ${errors.message ? 'border-red-500' : 'border-border'} bg-[#F5F7FA] text-foreground focus:outline-none focus:ring-2 focus:ring-burgundy/20 focus:border-burgundy transition-all resize-none`}
                       placeholder="How can we assist you today?"
                     />
+                    {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
                   </div>
+
+                  {/* Honeypot field - hidden */}
+                  <input
+                    type="text"
+                    name="website_url"
+                    value={formData.website_url}
+                    onChange={handleChange}
+                    style={{ display: 'none', visibility: 'hidden' }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
 
                   <button
                     type="submit"
-                    disabled={isSubmitted}
+                    disabled={isSubmitted || isLoading}
                     className="w-full btn-primary flex items-center justify-center gap-3 px-10 py-5 rounded-full text-lg font-bold disabled:opacity-70 group shadow-burgundy"
                   >
                     {isSubmitted ? (
@@ -234,6 +329,8 @@ const Contact = () => {
                         <CheckCircle className="w-6 h-6" />
                         Message Sent Successfully
                       </>
+                    ) : isLoading ? (
+                      "Sending..."
                     ) : (
                       <>
                         <Send className="w-5 h-5 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
