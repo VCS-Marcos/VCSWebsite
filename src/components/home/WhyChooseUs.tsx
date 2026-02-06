@@ -28,7 +28,7 @@ const features = [
 const stats = [
   { value: 500, suffix: "+", label: "Happy Clients" },
   { value: 1500, suffix: "+", label: "Projects Completed" },
-  { value: 15, suffix: "+", label: "Years Experience" },
+  { value: 35, suffix: "+", label: "Years Experience" },
   { value: 50, suffix: "+", label: "Team Members" },
 ];
 
@@ -48,7 +48,7 @@ export const WhyChooseUs = () => {
                 <span className="text-gradient">IT Excellence</span>
               </h2>
               <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
-                With over 15 years of experience, we've helped hundreds of businesses transform their IT infrastructure and achieve their digital goals.
+                With over 35 years of experience, we've helped hundreds of businesses transform their IT infrastructure and achieve their digital goals.
               </p>
             </ScrollReveal>
 
@@ -79,13 +79,11 @@ export const WhyChooseUs = () => {
               {stats.map((stat, index) => (
                 <div
                   key={stat.label}
-                  className={`p-8 rounded-2xl ${
-                    index % 2 === 0 ? "bg-gradient-subtle" : "bg-primary text-primary-foreground"
-                  } ${index === 1 ? "translate-y-8" : ""} ${index === 3 ? "translate-y-8" : ""}`}
+                  className={`p-8 rounded-2xl ${index % 2 === 0 ? "bg-gradient-subtle" : "bg-primary text-primary-foreground"
+                    } ${index === 1 ? "translate-y-8" : ""} ${index === 3 ? "translate-y-8" : ""}`}
                 >
-                  <div className={`text-4xl sm:text-5xl font-display font-bold mb-2 ${
-                    index % 2 === 0 ? "text-foreground" : ""
-                  }`}>
+                  <div className={`text-4xl sm:text-5xl font-display font-bold mb-2 ${index % 2 === 0 ? "text-foreground" : ""
+                    }`}>
                     <Counter end={stat.value} suffix={stat.suffix} />
                   </div>
                   <div className={`text-sm ${index % 2 === 0 ? "text-muted-foreground" : "text-primary-foreground/80"}`}>

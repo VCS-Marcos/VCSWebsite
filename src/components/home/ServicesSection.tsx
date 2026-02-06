@@ -68,10 +68,7 @@ export const ServicesSection = () => {
                 to={service.href}
                 className="group p-10 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full hover:-translate-y-1"
               >
-                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-8 transition-colors duration-300 ${service.highlighted
-                  ? "bg-burgundy text-white"
-                  : "bg-[#F5E6E8] text-burgundy"
-                  }`}>
+                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-8 transition-colors duration-300 bg-[#F5E6E8] text-burgundy group-hover:bg-burgundy group-hover:text-white`}>
                   <service.icon className="w-6 h-6" />
                 </div>
                 <h3 className="font-display text-2xl font-bold text-[#1A1A1A] mb-4">

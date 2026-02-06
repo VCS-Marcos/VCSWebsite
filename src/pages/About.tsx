@@ -50,7 +50,7 @@ const About = () => {
                 Your Trusted <span className="text-burgundy">IT Partner</span> Since 2009
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                We've been empowering organizations through innovative infrastructure, secure networking, and tailored software solutions for over 15 years.
+                We've been empowering organizations through innovative infrastructure, secure networking, and tailored software solutions for over 35 years.
               </p>
             </div>
           </ScrollReveal>
@@ -62,7 +62,7 @@ const About = () => {
         <div className="container-custom">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { value: 15, suffix: "+", label: "Years Experience" },
+              { value: 35, suffix: "+", label: "Years Experience" },
               { value: 500, suffix: "+", label: "Clients Served" },
               { value: 50, suffix: "+", label: "Team Members" },
               { value: 99.9, suffix: "%", label: "Uptime" },
@@ -137,7 +137,7 @@ const About = () => {
                     />
                   </div>
                   <div className="aspect-square rounded-[2rem] bg-burgundy flex flex-col items-center justify-center p-6 text-white text-center shadow-xl">
-                    <p className="text-4xl font-bold mb-2">15+</p>
+                    <p className="text-4xl font-bold mb-2">35+</p>
                     <p className="font-medium opacity-80 uppercase tracking-wider text-xs">Years of Excellence</p>
                   </div>
                 </div>
@@ -260,7 +260,7 @@ const About = () => {
                           <p className="text-sm font-medium opacity-70">Client Satisfaction</p>
                         </div>
                         <div className="bg-[#F5F7FA] p-6 rounded-2xl border border-border/50">
-                          <p className="text-3xl font-bold text-burgundy mb-1">15+</p>
+                          <p className="text-3xl font-bold text-burgundy mb-1">35+</p>
                           <p className="text-sm font-medium opacity-70">Years of Trust</p>
                         </div>
                       </div>

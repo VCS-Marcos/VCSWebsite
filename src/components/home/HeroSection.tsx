@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Shield, Zap, Cpu, Clock } from "lucide-react";
+import { ArrowRight, Shield, Zap, Award, Users } from "lucide-react";
 import Counter from "@/components/ui/Counter";
 
 const stats = [
   { value: 500, suffix: "+", label: "Clients Served" },
   { value: 24, suffix: "/7", label: "Support Available" },
-  { value: 15, suffix: "+", label: "Years Experience" },
+  { value: 35, suffix: "+", label: "Years Experience" },
 ];
 
 const featureCards = [
@@ -23,9 +23,9 @@ const featureCards = [
     variant: "dark" as const,
   },
   {
-    icon: Cpu,
-    title: "Smart Solutions",
-    description: "AI-powered automation and efficiency",
+    icon: Award,
+    title: "Proven Expertise",
+    description: "35+ years of IT excellence and innovation",
     variant: "light" as const,
   },
 ];
@@ -199,12 +199,14 @@ export const HeroSection = () => {
                   }}
                   className="p-6 rounded-2xl bg-gradient-to-br from-white to-warm-gray/30 border border-border/50 shadow-card cursor-pointer transition-all duration-200 hover:border-burgundy/20 hover:shadow-xl"
                 >
-                  <div className="text-4xl font-display font-bold text-primary mb-2">
-                    99.9%
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-primary/10">
+                    <Users className="w-6 h-6 text-primary" />
                   </div>
-                  <div className="text-sm text-muted-foreground flex items-center gap-2">
-                    <Clock className="w-4 h-4" />
-                    Uptime Guarantee
+                  <div className="text-sm font-semibold text-foreground mb-1">
+                    Certified Partners
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    Authorized by global tech leaders
                   </div>
                 </motion.div>
               </div>

@@ -5,12 +5,11 @@ const partners = [
   { name: "Xerox", logo: "/logos/xerox.png" },
   { name: "Microsoft", logo: "/logos/microsoft.png" },
   { name: "Cisco", logo: "/logos/cisco.png" },
-  { name: "Dell", logo: "/logos/dell.png" },
+  { name: "Dell", logo: "/logos/dell-logo.png" },
   { name: "VMware", logo: "/logos/vmware.png" },
   { name: "AWS", logo: "/logos/aws.png" },
   { name: "Zoho", logo: "/logos/zoho.png" },
   { name: "Symantec", logo: "/logos/symantec.png" },
-  { name: "Matrix Comsec", logo: "/logos/matrix.png" },
   { name: "Kaspersky", logo: "/logos/kaspersky.png" },
   { name: "Veeam", logo: "/logos/veeam.png" },
   { name: "Sophos", logo: "/logos/sophos.png" },
@@ -34,10 +33,10 @@ export const PartnersSection = () => {
         {/* Infinite scroll effect */}
         <div className="relative">
           <motion.div
-            animate={{ x: [0, -1600] }}
+            animate={{ x: [0, -2400] }}
             transition={{
               x: {
-                duration: 50,
+                duration: 25,
                 repeat: Infinity,
                 ease: "linear",
               },

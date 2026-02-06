@@ -6,7 +6,34 @@ import logo from "@/assets/vcslogo.png";
 
 const navItems = [
   {
-    label: "Solutions",
+    label: "Home",
+    href: "/",
+    megaMenu: false,
+  },
+  {
+    label: "Software",
+    href: "/software",
+    megaMenu: true,
+    sections: [
+      {
+        title: "In-House Solutions",
+        items: [
+          { label: "VCS HRS", href: "/software/hrs", icon: Users, description: "HR & Payroll Management" },
+          { label: "AstroNET", href: "/software/astronet", icon: MapPin, description: "Tour Operations System" },
+          { label: "Custom Applications", href: "/software/custom", icon: Code, description: "Tailored software development" },
+        ]
+      },
+      {
+        title: "Partner Solutions",
+        items: [
+          { label: "POS Solutions", href: "/software/pos", icon: MonitorSmartphone, description: "Retail Management Systems" },
+          { label: "Software Licensing", href: "/software/licensing", icon: Award, description: "Authorized brand licensing" },
+        ]
+      }
+    ]
+  },
+  {
+    label: "IT Solutions",
     href: "/services",
     megaMenu: true,
     sections: [
@@ -42,46 +69,7 @@ const navItems = [
   {
     label: "Xerox",
     href: "/xerox",
-    megaMenu: true,
-    sections: [
-      {
-        title: "Xerox Products",
-        items: [
-          { label: "Home Office & Small Teams", href: "/xerox#home-office", icon: Printer, description: "Compact & efficient solutions" },
-          { label: "Medium Workgroups", href: "/xerox#medium-workgroups", icon: Printer, description: "Professional team printers" },
-          { label: "Heavy Duty / Enterprise", href: "/xerox#heavy-duty", icon: Printer, description: "High-volume print power" },
-        ]
-      },
-      {
-        title: "Authorized Distributor",
-        items: [
-          { label: "Product Overview", href: "/xerox#products", icon: FileText, description: "Explore the full Xerox range" },
-          { label: "Partner Benefits", href: "/xerox#benefits", icon: Award, description: "Why buy from an authorized partner" },
-        ]
-      }
-    ]
-  },
-  {
-    label: "Software",
-    href: "/software",
-    megaMenu: true,
-    sections: [
-      {
-        title: "In-House Solutions",
-        items: [
-          { label: "VCS HRS", href: "/software/hrs", icon: Users, description: "HR & Payroll Management" },
-          { label: "AstroNET", href: "/software/astronet", icon: MapPin, description: "Tour Operations System" },
-          { label: "Custom Applications", href: "/software/custom", icon: Code, description: "Tailored software development" },
-        ]
-      },
-      {
-        title: "Partner Solutions",
-        items: [
-          { label: "POS Solutions", href: "/software/pos", icon: MonitorSmartphone, description: "Retail Management Systems" },
-          { label: "Software Licensing", href: "/software/licensing", icon: Award, description: "Authorized brand licensing" },
-        ]
-      }
-    ]
+    megaMenu: false,
   },
   {
     label: "About Us",
@@ -99,6 +87,7 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [activeMobileMenu, setActiveMobileMenu] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -146,9 +135,11 @@ export const Navbar = () => {
               >
                 <Link
                   to={item.href}
-                  className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-lg ${location.pathname.startsWith(item.href)
-                    ? "text-primary"
-                    : "text-foreground hover:text-primary hover:bg-muted/50"
+                  className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-lg ${
+                    // For Home, only match exact path. For others, use startsWith
+                    item.href === "/"
+                      ? (location.pathname === "/" ? "text-primary" : "text-foreground hover:text-primary hover:bg-muted/50")
+                      : (location.pathname.startsWith(item.href) ? "text-primary" : "text-foreground hover:text-primary hover:bg-muted/50")
                     }`}
                 >
                   {item.label}
@@ -245,15 +236,68 @@ export const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-card border-t border-border overflow-hidden"
           >
-            <div className="container-custom py-6 space-y-4">
+            <div className="container-custom py-6 space-y-2 max-h-[70vh] overflow-y-auto">
               {navItems.map((item) => (
-                <div key={item.label}>
-                  <Link
-                    to={item.href}
-                    className="block py-3 text-lg font-medium text-foreground hover:text-primary transition-colors"
-                  >
-                    {item.label}
-                  </Link>
+                <div key={item.label} className="border-b border-border/50 pb-2">
+                  {item.megaMenu && item.sections ? (
+                    <div>
+                      <button
+                        onClick={() => setActiveMobileMenu(activeMobileMenu === item.label ? null : item.label)}
+                        className="flex items-center justify-between w-full py-3 text-lg font-medium text-foreground hover:text-primary transition-colors"
+                      >
+                        {item.label}
+                        <ChevronDown
+                          className={`w-5 h-5 transition-transform duration-200 ${activeMobileMenu === item.label ? "rotate-180" : ""}`}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {activeMobileMenu === item.label && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="pl-4 space-y-3 mt-2"
+                          >
+                            {item.sections.map((section) => (
+                              <div key={section.title} className="mb-4">
+                                <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                                  {section.title}
+                                </h4>
+                                <div className="space-y-2">
+                                  {section.items.map((subItem) => (
+                                    <Link
+                                      key={subItem.label}
+                                      to={subItem.href}
+                                      className="flex items-start gap-3 p-2 rounded-lg hover:bg-muted transition-colors"
+                                    >
+                                      <div className="p-1.5 rounded-lg bg-primary/10 text-primary mt-0.5">
+                                        <subItem.icon className="w-4 h-4" />
+                                      </div>
+                                      <div className="flex-1">
+                                        <span className="block text-sm font-medium text-foreground">
+                                          {subItem.label}
+                                        </span>
+                                        <span className="block text-xs text-muted-foreground">
+                                          {subItem.description}
+                                        </span>
+                                      </div>
+                                    </Link>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      className="block py-3 text-lg font-medium text-foreground hover:text-primary transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </div>
               ))}
               <Link
