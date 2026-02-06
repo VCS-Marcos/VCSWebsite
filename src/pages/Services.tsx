@@ -4,12 +4,15 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import serverRoom from "@/assets/server-room.jpg";
+import serverSolutionsImg from "@/assets/server-solutions.jpg";
+import videoSurveillanceImg from "@/assets/video-surveillance.jpg";
+import datacenterSolutionsImg from "@/assets/datacenter-solutions.jpg";
 
 const services = [
   {
     title: "Server Solutions",
     description: "Enterprise-grade server infrastructure setup, maintenance, and optimization. We design and implement robust server environments that power your business operations with reliability and scalability.",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc48?q=80&w=1500&auto=format&fit=crop",
+    image: serverSolutionsImg,
     features: ["Server Installation & Configuration", "Virtualization Solutions", "Storage Solutions", "Backup & Recovery"],
     href: "/services/servers",
   },
@@ -37,7 +40,7 @@ const services = [
   {
     title: "Video Surveillance Solutions",
     description: "Comprehensive surveillance and security camera systems with advanced analytics. Protect your premises with modern monitoring technology.",
-    image: "https://images.unsplash.com/photo-1557597774-9d2739f85a76?q=80&w=1500&auto=format&fit=crop",
+    image: videoSurveillanceImg,
     features: ["IP Camera Systems", "Video Analytics", "Remote Monitoring", "Mobile App Access"],
     href: "/services/video-surveillance",
   },
@@ -79,7 +82,7 @@ const services = [
   {
     title: "Data Center Solutions",
     description: "Design, build, and manage data center infrastructure that meets your performance and compliance requirements.",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc48?q=80&w=1500&auto=format&fit=crop",
+    image: datacenterSolutionsImg,
     features: ["Data Center Design", "Colocation Services", "Disaster Recovery", "Infrastructure Management"],
     href: "/services/data-centers",
   },

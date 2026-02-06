@@ -293,22 +293,16 @@ const Xerox = () => {
                             {product.description}
                           </p>
 
-                          <div className="mt-auto pt-6 border-t border-border flex flex-col gap-3">
+                          <div className="mt-auto pt-6 border-t border-border">
                             <a
                               href={product.brochureLink}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="flex items-center justify-center gap-2 text-sm font-semibold text-primary py-2 hover:underline transition-all"
+                              className="btn-primary w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-bold shadow-burgundy group/btn"
                             >
-                              <Download className="w-4 h-4" />
+                              <Download className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
                               Download Brochure
                             </a>
-                            <Link
-                              to="/contact"
-                              className="btn-outline w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold"
-                            >
-                              Contact Us
-                            </Link>
                           </div>
                         </div>
                       </div>
@@ -365,12 +359,6 @@ const Xerox = () => {
             <DialogTitle>{selectedProduct?.name}</DialogTitle>
           </DialogHeader>
           <div className="relative aspect-video sm:aspect-square md:aspect-video bg-white flex items-center justify-center p-8">
-            <button
-              onClick={() => setSelectedProduct(null)}
-              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/5 hover:bg-black/10 transition-colors"
-            >
-              <X className="w-6 h-6 text-foreground" />
-            </button>
             {selectedProduct && (
               <img
                 src={selectedProduct.image}

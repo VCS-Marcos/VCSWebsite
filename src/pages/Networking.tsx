@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { CheckCircle, Network, Wifi, ShieldCheck, Globe, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import lifecycleImg from "@/assets/networking-lifecycle.jpg";
 
 const Networking = () => {
     return (
@@ -121,7 +122,7 @@ const Networking = () => {
                         <div className="relative">
                             <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
                                 <img
-                                    src="https://images.unsplash.com/photo-1551703599-6b3e8c7eef12?auto=format&fit=crop&q=80&w=1500"
+                                    src={lifecycleImg}
                                     alt="Network Lifecycle"
                                     className="w-full h-full object-cover"
                                 />

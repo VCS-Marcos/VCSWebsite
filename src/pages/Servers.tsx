@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { CheckCircle, Server, Database, Shield, Zap, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import heroImg from "@/assets/server-solutions.jpg";
 
 const Servers = () => {
     return (
@@ -33,7 +34,7 @@ const Servers = () => {
                             <ScrollReveal delay={0.2}>
                                 <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">
                                     <img
-                                        src="https://images.unsplash.com/photo-1558494949-ef010cbdcc48?q=80&w=1500&auto=format&fit=crop"
+                                        src={heroImg}
                                         alt="Server Infrastructure"
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500"
                                     />

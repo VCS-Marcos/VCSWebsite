@@ -53,17 +53,17 @@ export const Footer = () => {
               Your trusted partner for comprehensive IT solutions. From infrastructure to software development, we deliver excellence.
             </p>
             <div className="space-y-3">
-              <a href="mailto:info@vcs.com" className="flex items-center gap-3 text-white/70 hover:text-white transition-colors">
+              <a href="mailto:info@vcsinet.com" className="flex items-center gap-3 text-white/70 hover:text-white transition-all">
                 <Mail className="w-5 h-5 text-burgundy-light" />
-                info@vcs.com
+                info@vcsinet.com
               </a>
-              <a href="tel:+1234567890" className="flex items-center gap-3 text-white/70 hover:text-white transition-colors">
+              <a href="tel:+2484676000" className="flex items-center gap-3 text-white/70 hover:text-white transition-all">
                 <Phone className="w-5 h-5 text-burgundy-light" />
-                +123 456 7890
+                +248 4676000
               </a>
               <p className="flex items-start gap-3 text-white/70">
                 <MapPin className="w-5 h-5 text-burgundy-light flex-shrink-0 mt-0.5" />
-                123 Tech Street, Innovation City
+                VCS Building, Le Chantier, <br />Victoria, Seychelles
               </p>
             </div>
           </div>

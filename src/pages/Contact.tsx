@@ -8,26 +8,29 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    details: ["+123 456 7890", "+123 456 7891"],
-    description: "Mon-Fri from 8am to 6pm",
+    details: ["+248 4676000"],
+    description: "Mon-Fri from 8am to 4:30pm",
+    href: "tel:+2484676000",
   },
   {
     icon: Mail,
     title: "Email",
-    details: ["info@vcs.com", "support@vcs.com"],
+    details: ["info@vcsinet.com", "sales@vcsinet.com"],
     description: "We reply within 24 hours",
+    href: "mailto:info@vcsinet.com",
   },
   {
     icon: MapPin,
     title: "Office",
-    details: ["123 Tech Street", "Innovation City, IC 12345"],
+    details: ["VCS Building, Le Chantier", "Victoria, Seychelles"],
     description: "Visit us anytime",
+    href: "https://www.google.com/maps/search/?api=1&query=VCS+Building+Le+Chantier+Victoria+Seychelles",
   },
   {
     icon: Clock,
     title: "Working Hours",
-    details: ["Monday - Friday: 8am - 6pm", "Saturday: 9am - 1pm"],
-    description: "Emergency support 24/7",
+    details: ["Mon - Fri: 8am - 4:30pm", "Sat: 9am - 12pm"],
+    description: "Closed on Sundays",
   },
 ];
 
@@ -59,24 +62,24 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-background via-background to-warm-gray/30">
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-tech-blue/5 to-transparent" />
+      <section className="relative pt-40 pb-24 overflow-hidden bg-[#F5F7FA]">
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-burgundy/5 to-transparent" />
+          <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-burgundy/5 to-transparent" />
         </div>
         <div className="container-custom relative z-10">
           <ScrollReveal>
-            <div className="max-w-3xl mx-auto text-center">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+            <div className="max-w-3xl">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-burgundy/10 text-burgundy text-sm font-semibold mb-6">
                 Contact Us
               </span>
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                Let's Start a Conversation
+              <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-[#1A1A1A] mb-8 leading-tight">
+                Let's Start a <span className="text-burgundy">Conversation</span>
               </h1>
-              <p className="text-xl text-muted-foreground">
-                Have a project in mind? We'd love to hear from you. Get in touch with our team.
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                Have a project in mind or need technical support? We're here to help. Reach out to the VCS team today.
               </p>
             </div>
           </ScrollReveal>
@@ -84,158 +87,157 @@ const Contact = () => {
       </section>
 
       {/* Contact Info */}
-      <section className="py-12 bg-card border-b border-border">
+      <section className="py-24 bg-white border-b border-border/50">
         <div className="container-custom">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {contactInfo.map((info, index) => (
               <ScrollReveal key={info.title} delay={index * 0.1}>
-                <div className="text-center">
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <info.icon className="w-7 h-7 text-primary" />
+                {info.href ? (
+                  <a
+                    href={info.href}
+                    target={info.href.startsWith('http') ? "_blank" : undefined}
+                    rel={info.href.startsWith('http') ? "noopener noreferrer" : undefined}
+                    className="block group p-8 rounded-3xl hover:bg-[#F5F7FA] transition-all duration-300 border border-transparent hover:border-border/50 text-center"
+                  >
+                    <div className="w-16 h-16 rounded-2xl bg-burgundy/5 flex items-center justify-center mx-auto mb-6 group-hover:bg-burgundy transition-all duration-500">
+                      <info.icon className="w-8 h-8 text-burgundy group-hover:text-white transition-colors" />
+                    </div>
+                    <h3 className="font-display font-bold text-xl text-[#1A1A1A] mb-3">
+                      {info.title}
+                    </h3>
+                    <div className="space-y-1">
+                      {info.details.map((detail) => (
+                        <p key={detail} className="text-[#1A1A1A] font-medium">{detail}</p>
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-4">{info.description}</p>
+                  </a>
+                ) : (
+                  <div className="p-8 rounded-3xl hover:bg-[#F5F7FA] transition-all duration-300 border border-transparent hover:border-border/50 text-center">
+                    <div className="w-16 h-16 rounded-2xl bg-burgundy/5 flex items-center justify-center mx-auto mb-6 transition-all duration-500">
+                      <info.icon className="w-8 h-8 text-burgundy" />
+                    </div>
+                    <h3 className="font-display font-bold text-xl text-[#1A1A1A] mb-3">
+                      {info.title}
+                    </h3>
+                    <div className="space-y-1">
+                      {info.details.map((detail) => (
+                        <p key={detail} className="text-[#1A1A1A] font-medium">{detail}</p>
+                      ))}
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-4">{info.description}</p>
                   </div>
-                  <h3 className="font-display font-semibold text-foreground mb-2">
-                    {info.title}
-                  </h3>
-                  {info.details.map((detail) => (
-                    <p key={detail} className="text-foreground">{detail}</p>
-                  ))}
-                  <p className="text-sm text-muted-foreground mt-1">{info.description}</p>
-                </div>
+                )}
               </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section className="section-padding">
+      {/* Contact Form & Map */}
+      <section className="py-24">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-2 gap-20">
             <ScrollReveal>
               <div>
-                <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                  Get in Touch
-                </span>
-                <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-6">
-                  Send Us a Message
-                </h2>
-                <p className="text-lg text-muted-foreground mb-8">
-                  Fill out the form and our team will get back to you within 24 hours.
-                </p>
+                <div className="mb-12">
+                  <span className="inline-block px-4 py-1.5 rounded-full bg-burgundy/10 text-burgundy text-sm font-semibold mb-4">
+                    Send a Message
+                  </span>
+                  <h2 className="font-display text-4xl font-bold text-[#1A1A1A] mb-4">
+                    How Can We Help?
+                  </h2>
+                  <p className="text-lg text-muted-foreground">
+                    Fill out the form below and our specialized team will get back to you within 24 business hours.
+                  </p>
+                </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Full Name *
-                      </label>
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-[#1A1A1A]">Full Name *</label>
                       <input
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                        className="w-full px-6 py-4 rounded-2xl border border-border bg-[#F5F7FA] text-foreground focus:outline-none focus:ring-2 focus:ring-burgundy/20 focus:border-burgundy transition-all"
                         placeholder="John Doe"
                       />
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Email Address *
-                      </label>
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-[#1A1A1A]">Email Address *</label>
                       <input
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
-                        placeholder="john@company.com"
+                        className="w-full px-6 py-4 rounded-2xl border border-border bg-[#F5F7FA] text-foreground focus:outline-none focus:ring-2 focus:ring-burgundy/20 focus:border-burgundy transition-all"
+                        placeholder="john@company.sc"
                       />
                     </div>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Phone Number
-                      </label>
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-[#1A1A1A]">Phone Number</label>
                       <input
                         type="tel"
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
-                        placeholder="+123 456 7890"
+                        className="w-full px-6 py-4 rounded-2xl border border-border bg-[#F5F7FA] text-foreground focus:outline-none focus:ring-2 focus:ring-burgundy/20 focus:border-burgundy transition-all"
+                        placeholder="+248 123 4567"
                       />
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Company Name
-                      </label>
-                      <input
-                        type="text"
-                        name="company"
-                        value={formData.company}
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-[#1A1A1A]">Service Interested In</label>
+                      <select
+                        name="service"
+                        value={formData.service}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
-                        placeholder="Your Company"
-                      />
+                        className="w-full px-6 py-4 rounded-2xl border border-border bg-[#F5F7FA] text-foreground focus:outline-none focus:ring-2 focus:ring-burgundy/20 focus:border-burgundy transition-all appearance-none"
+                      >
+                        <option value="">Select a service</option>
+                        <option value="servers">Server Solutions</option>
+                        <option value="networking">Networking</option>
+                        <option value="software">Software</option>
+                        <option value="cloud">Cloud Services</option>
+                        <option value="xerox">Xerox Solutions</option>
+                        <option value="managed-it">Managed IT</option>
+                      </select>
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Service Interested In
-                    </label>
-                    <select
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
-                    >
-                      <option value="">Select a service</option>
-                      <option value="servers">Server Solutions</option>
-                      <option value="networking">Networking</option>
-                      <option value="software">Software Development</option>
-                      <option value="cloud">Cloud Services</option>
-                      <option value="cctv">CCTV Solutions</option>
-                      <option value="pabx">PABX Systems</option>
-                      <option value="xerox">Xerox Products</option>
-                      <option value="managed-it">Managed IT</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Your Message *
-                    </label>
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold text-[#1A1A1A]">Your Message *</label>
                     <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-none"
-                      placeholder="Tell us about your project or inquiry..."
+                      className="w-full px-6 py-4 rounded-2xl border border-border bg-[#F5F7FA] text-foreground focus:outline-none focus:ring-2 focus:ring-burgundy/20 focus:border-burgundy transition-all resize-none"
+                      placeholder="How can we assist you today?"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSubmitted}
-                    className="btn-primary w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold disabled:opacity-70"
+                    className="w-full btn-primary flex items-center justify-center gap-3 px-10 py-5 rounded-full text-lg font-bold disabled:opacity-70 group shadow-burgundy"
                   >
                     {isSubmitted ? (
                       <>
-                        <CheckCircle className="w-5 h-5" />
-                        Message Sent!
+                        <CheckCircle className="w-6 h-6" />
+                        Message Sent Successfully
                       </>
                     ) : (
                       <>
-                        <Send className="w-5 h-5" />
-                        Send Message
+                        <Send className="w-5 h-5 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+                        Send Discovery Inquiry
                       </>
                     )}
                   </button>
@@ -244,39 +246,34 @@ const Contact = () => {
             </ScrollReveal>
 
             <ScrollReveal direction="left">
-              <div className="bg-gradient-subtle rounded-2xl p-8 lg:p-12 h-full">
-                <h3 className="font-display text-2xl font-bold text-foreground mb-6">
-                  Why Work With Us?
-                </h3>
-                <ul className="space-y-6">
-                  {[
-                    { title: "15+ Years Experience", description: "Trusted by 500+ businesses across various industries." },
-                    { title: "24/7 Support", description: "Round-the-clock technical support for critical issues." },
-                    { title: "Certified Experts", description: "Our team holds certifications from leading technology vendors." },
-                    { title: "Custom Solutions", description: "Tailored IT solutions designed for your specific needs." },
-                    { title: "Competitive Pricing", description: "Enterprise-grade solutions at competitive rates." },
-                  ].map((item) => (
-                    <li key={item.title} className="flex gap-4">
-                      <CheckCircle className="w-6 h-6 text-primary flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-foreground">{item.title}</h4>
-                        <p className="text-sm text-muted-foreground">{item.description}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+              <div className="h-full flex flex-col">
+                <div className="mb-8">
+                  <h3 className="font-display text-2xl font-bold text-[#1A1A1A] mb-4">
+                    Our Location
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Visit our main office located in Victoria, Seychelles for in-person consultations.
+                  </p>
+                </div>
+                <div className="flex-grow rounded-3xl overflow-hidden shadow-2xl border border-border/50 relative group min-h-[450px]">
+                  <iframe
+                    title="VCS Office Location"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.012345678901!2d55.451000!3d-4.623000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwMzcnMjIuOCJTIDU1wrAyNycwMy42IkU!5e0!3m2!1sen!2s!4v1234567890123"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="absolute inset-0"
+                  />
+                  <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-border/50 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                    <p className="font-bold text-[#1A1A1A] mb-1">Victoria Computer Services (VCS)</p>
+                    <p className="text-sm text-muted-foreground">VCS Building, Le Chantier, Victoria, Seychelles</p>
+                  </div>
+                </div>
               </div>
             </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Map placeholder */}
-      <section className="h-96 bg-muted relative">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
-            <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
-            <p className="text-muted-foreground">Map Integration Available</p>
           </div>
         </div>
       </section>

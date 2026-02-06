@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { CheckCircle, Database, Server, Shield, Zap, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import heroImg from "@/assets/datacenter-solutions.jpg";
 
 const DataCenters = () => {
     return (
@@ -33,7 +34,7 @@ const DataCenters = () => {
                             <ScrollReveal delay={0.2}>
                                 <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl group">
                                     <img
-                                        src="https://images.unsplash.com/photo-1558494949-ef010cbdcc48?q=80&w=1500&auto=format&fit=crop"
+                                        src={heroImg}
                                         alt="Data Center"
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
