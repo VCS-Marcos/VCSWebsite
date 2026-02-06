@@ -57,10 +57,16 @@ try {
     // ====== SECURITY CHECKS ======
 
     // 0. Referer Check (Anti-CSRF/Hotlinking)
+    // 0. Referer Check (Anti-CSRF/Hotlinking)
     $referer = $_SERVER['HTTP_REFERER'] ?? '';
-    if (!empty($referer) && strpos($referer, 'vcsinet.com') === false && strpos($referer, 'localhost') === false) {
+    if (
+        !empty($referer) &&
+        strpos($referer, 'vcsinet.com') === false &&
+        strpos($referer, 'localhost') === false &&
+        strpos($referer, '127.0.0.1') === false
+    ) {
         // Fail silently or generic error
-        throw new Exception('Invalid request source.');
+        throw new Exception("Invalid request source: $referer");
     }
 
     $json_data = file_get_contents('php://input');
