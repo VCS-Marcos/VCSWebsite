@@ -47,7 +47,7 @@ const About = () => {
                 About Us
               </span>
               <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-[#1A1A1A] mb-8 leading-tight">
-                Your Trusted <span className="text-burgundy">IT Partner</span> Since 1991
+                Your Trusted <span className="text-burgundy">IT Partner</span> Since 1990
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
                 We've been empowering organizations through innovative infrastructure, secure networking, and tailored software solutions for over 35 years.
