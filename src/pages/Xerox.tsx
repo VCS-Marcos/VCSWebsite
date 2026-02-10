@@ -332,7 +332,7 @@ const Xerox = () => {
             <ScrollReveal direction="left">
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+2484676000"
                   className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-white text-primary font-semibold hover:bg-white/90 transition-colors"
                 >
                   <Phone className="w-5 h-5" />

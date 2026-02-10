@@ -43,7 +43,7 @@ const Contact = () => {
     service: "",
     message: "",
     website_url: "", // Honeypot
-    _submit_time: Date.now().toString(), // Timestamp
+    _submit_time: Math.floor(Date.now() / 1000).toString(), // Timestamp
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -105,7 +105,7 @@ const Contact = () => {
             service: "",
             message: "",
             website_url: "",
-            _submit_time: Date.now().toString(),
+            _submit_time: Math.floor(Date.now() / 1000).toString(),
           });
           setIsSubmitted(false);
           setErrors({});

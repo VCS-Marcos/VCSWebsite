@@ -26,7 +26,7 @@ const navItems = [
       {
         title: "Partner Solutions",
         items: [
-          { label: "POS Solutions", href: "/software/pos", icon: MonitorSmartphone, description: "Retail Management Systems" },
+          { label: "POS Solutions", href: "/software/pos", icon: MonitorSmartphone, description: "Business Management Systems" },
           { label: "Software Licensing", href: "/software/licensing", icon: Award, description: "Authorized brand licensing" },
         ]
       }

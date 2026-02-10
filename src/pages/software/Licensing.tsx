@@ -19,7 +19,7 @@ const Licensing = () => {
                                     Authorized Software Licensing Partner
                                 </span>
                                 <h1 className="font-display text-5xl sm:text-6xl font-bold text-[#1A1A1A] mb-8 leading-tight">
-                                    Genuine <span className="text-burgundy">Software</span> Solutions
+                                    Genuine <span className="text-burgundy">Software</span> Licenses
                                 </h1>
                                 <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
                                     Access industry-leading tools for accounting, design, engineering, and business productivity with genuine licenses from globally recognized technology brands.

@@ -16,10 +16,10 @@ const POS = () => {
                         <ScrollReveal>
                             <div className="max-w-2xl">
                                 <span className="inline-block px-4 py-1.5 rounded-full bg-burgundy/10 text-burgundy text-sm font-semibold mb-6 border border-burgundy/20">
-                                    POS & Retail Management Solution
+                                    Point Of Sale Solution
                                 </span>
                                 <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-[#1A1A1A] mb-8 leading-tight">
-                                    Smart <span className="text-burgundy">Retail</span> Sales
+                                    Smart <span className="text-burgundy">POS</span> Solutions
                                 </h1>
                                 <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
                                     A feature-rich, scalable POS system designed to streamline sales operations for hospitality, retail, and quick-service businesses.

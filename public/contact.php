@@ -1,186 +1,72 @@
 <?php
-// ====== CONFIGURATION ======
-// Microsoft 365 SMTP Settings
-$SMTP_HOST = 'smtp.office365.com';
-$SMTP_PORT = 587;
-$SMTP_USER = 'formmail@switch.sc'; // KEEP AS IS per instructions (using existing mailer)
-$SMTP_PASS = 'Password123';        // KEEP AS IS per instructions
-$TO_EMAIL = 'info@vcsinet.com';   // Updated to VCS email
-
-// Security Settings
-$ENABLE_RATE_LIMIT = true;
-$RATE_LIMIT = 5; // Max submissions per hour per IP
-$MIN_SUBMISSION_TIME = 2; // Minimum seconds to fill form (blocks instant bots)
-$ENABLE_HONEYPOT = true;
-$HONEYPOT_FIELD = 'website_url'; // Hidden field name
-// ===========================
-
-// Enable CORS with strict checks
-$allowed_origins = ['https://vcsinet.com', 'https://www.vcsinet.com', 'http://localhost:8080'];
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-if (in_array($origin, $allowed_origins)) {
-    header("Access-Control-Allow-Origin: $origin");
-}
-header('Access-Control-Allow-Methods: POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
-header('Content-Type: application/json');
-header('X-Content-Type-Options: nosniff');
-header('X-Frame-Options: DENY');
-
-// Handle preflight requests
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit();
-}
-
-// Only process POST requests
-if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    http_response_code(405);
-    echo json_encode(['success' => false, 'message' => 'Method not allowed']);
-    exit();
-}
-
-// Load PHPMailer
-if (file_exists(__DIR__ . '/PHPMailer/src/Exception.php')) {
-    require_once __DIR__ . '/PHPMailer/src/Exception.php';
-    require_once __DIR__ . '/PHPMailer/src/PHPMailer.php';
-    require_once __DIR__ . '/PHPMailer/src/SMTP.php';
-}
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Start output buffering
-ob_start();
+header('Content-Type: application/json');
+/*header('Access-Control-Allow-Origin: http://localhost:8080');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');*/
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['success' => false, 'message' => 'Method not allowed']);
+    exit;
+}
+
+require_once __DIR__ . '/PHPMailer/src/Exception.php';
+require_once __DIR__ . '/PHPMailer/src/PHPMailer.php';
+require_once __DIR__ . '/PHPMailer/src/SMTP.php';
+
+// ===== CONFIG =====
+$SMTP_HOST = 'smtp.office365.com';
+$SMTP_PORT = 587;
+$SMTP_USER = 'formmail@switch.sc';
+$SMTP_PASS = 'D7sdEg8zCuk';
+$TO_EMAIL = 'tech@switch.sc';
+// ==================
+
+$data = json_decode(file_get_contents('php://input'), true);
+if (!$data) {
+    echo json_encode(['success' => false, 'message' => 'Invalid JSON']);
+    exit;
+}
+
+// ===== HONEYPOT =====
+if (!empty($data['website_url'])) {
+    echo json_encode(['success' => true]);
+    exit;
+}
+
+// ===== TIMESTAMP CHECK =====
+// ⚠️ TEMPORARY: disabled while verifying email delivery
+/*
+$submit_time = intval($data['_submit_time'] ?? 0);
+if ($submit_time && (time() - $submit_time) < 2) {
+    echo json_encode(['success' => true]);
+    exit;
+}
+*/
+
+$name = trim($data['name'] ?? '');
+$email = trim($data['email'] ?? '');
+$message = trim($data['message'] ?? '');
+$service = trim($data['service'] ?? '');
+$phone = trim($data['phone'] ?? '');
+$company = trim($data['company'] ?? '');
+
+if (!$name || !$email || strlen($message) < 10) {
+    echo json_encode(['success' => false, 'message' => 'Validation failed']);
+    exit;
+}
+
+$mail = new PHPMailer(true);
 
 try {
-    // ====== SECURITY CHECKS ======
-
-    // 0. Referer Check (Anti-CSRF/Hotlinking)
-    // 0. Referer Check (Anti-CSRF/Hotlinking)
-    $referer = $_SERVER['HTTP_REFERER'] ?? '';
-    if (
-        !empty($referer) &&
-        strpos($referer, 'vcsinet.com') === false &&
-        strpos($referer, 'localhost') === false &&
-        strpos($referer, '127.0.0.1') === false
-    ) {
-        // Fail silently or generic error
-        throw new Exception("Invalid request source: $referer");
-    }
-
-    $json_data = file_get_contents('php://input');
-    $data = json_decode($json_data, true);
-
-    // 1. Honeypot
-    if ($ENABLE_HONEYPOT) {
-        if (isset($data[$HONEYPOT_FIELD]) && !empty(trim($data[$HONEYPOT_FIELD]))) {
-            // Fake success
-            echo json_encode(['success' => true, 'message' => 'Message sent!']);
-            exit();
-        }
-    }
-
-    // 2. Rate Limiting
-    if ($ENABLE_RATE_LIMIT) {
-        $ip = $_SERVER['REMOTE_ADDR'];
-        $rate_key = 'rate_' . md5($ip);
-        $rate_dir = __DIR__ . '/.ratelimit';
-        $rate_file = $rate_dir . '/' . $rate_key;
-
-        if (!is_dir($rate_dir)) {
-            @mkdir($rate_dir, 0755, true);
-        }
-
-        if (file_exists($rate_file)) {
-            $attempts = json_decode(file_get_contents($rate_file), true);
-            $current_time = time();
-            $attempts = array_filter($attempts, function ($time) use ($current_time) {
-                return ($current_time - $time) < 3600;
-            });
-
-            if (count($attempts) >= $RATE_LIMIT) {
-                http_response_code(429);
-                echo json_encode(['success' => false, 'message' => 'Too many submissions. Please try again in an hour.']);
-                exit();
-            }
-
-            $attempts[] = $current_time;
-            file_put_contents($rate_file, json_encode($attempts));
-        } else {
-            file_put_contents($rate_file, json_encode([time()]));
-        }
-    }
-
-    // 3. Validation
-    if (empty($data))
-        throw new Exception('No data received.');
-
-    // Time check
-    if ($MIN_SUBMISSION_TIME > 0 && isset($data['_submit_time'])) {
-        $submit_time = intval($data['_submit_time']);
-        if ((time() - $submit_time) < $MIN_SUBMISSION_TIME) {
-            // Fake success
-            echo json_encode(['success' => true, 'message' => 'Message sent!']);
-            exit();
-        }
-    }
-
-    // ====== DATA EXTRACTION & STRICT VALIDATION ======
-
-    $name = clean_input($data['name'] ?? '');
-    $email = clean_input($data['email'] ?? '');
-    $phone = clean_input($data['phone'] ?? '');
-    $company = clean_input($data['company'] ?? '');
-    $service = clean_input($data['service'] ?? 'general');
-    $message = clean_input($data['message'] ?? '');
-
-    $errors = [];
-
-    // Name: letters, dots, spaces, hyphens. 2-50 chars.
-    if (!preg_match("/^[a-zA-Z\s\-\.]{2,50}$/", $name)) {
-        $errors[] = 'Invalid name format.';
-    }
-
-    // Email: Strict filter
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = 'Invalid email address.';
-    }
-
-    // Phone: Optional, but if present must be valid chars
-    if (!empty($phone) && !preg_match("/^[\d\s\-\+\(\)]{7,20}$/", $phone)) {
-        $errors[] = 'Invalid phone number.';
-    }
-
-    // Message: 10-2000 chars, check for malicious tags
-    if (strlen($message) < 10 || strlen($message) > 2000) {
-        $errors[] = 'Message must be between 10 and 2000 characters.';
-    }
-    // Simple anti-spam: check for url bbcode or excessive links
-    if (preg_match('/\[url=/i', $message) || substr_count($message, 'http') > 3) {
-        $errors[] = 'Message rejected as spam.';
-    }
-
-    if (!empty($errors)) {
-        throw new Exception(implode(' ', $errors));
-    }
-
-    // Service mapping
-    $service_map = [
-        'general' => 'General Inquiry',
-        'servers' => 'Server Solutions',
-        'networking' => 'Networking',
-        'software' => 'Software Development',
-        'cloud' => 'Cloud Services',
-        'xerox' => 'Xerox Solutions',
-        'managed-it' => 'Managed IT Services'
-    ];
-    $service_display = $service_map[$service] ?? $service;
-
-    // ====== EMAIL SENDING ======
-
-    $mail = new PHPMailer(true);
-
     $mail->isSMTP();
     $mail->Host = $SMTP_HOST;
     $mail->SMTPAuth = true;
@@ -189,66 +75,134 @@ try {
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = $SMTP_PORT;
 
-    $mail->setFrom($SMTP_USER, 'VCS Website Contact Form');
+    // ⚠️ TEMPORARY DEBUG (remove later)
+    $mail->SMTPDebug = 2;
+    $mail->Debugoutput = 'error_log';
+
+    $mail->setFrom($SMTP_USER, 'VCS Website');
     $mail->addAddress($TO_EMAIL);
     $mail->addReplyTo($email, $name);
-
     $mail->isHTML(true);
-    $mail->Subject = "VCS Website Inquiry: $name - $service_display";
+    $mail->CharSet = 'UTF-8';
+    $mail->Encoding = 'base64';
 
-    $mail->Body = create_email_body($name, $email, $phone, $company, $service_display, $message);
-    $mail->AltBody = create_text_body($name, $email, $phone, $company, $service_display, $message);
+    $mail->Subject = "New Website Inquiry | VCS";
 
-    if ($mail->send()) {
-        log_submission($_SERVER['REMOTE_ADDR'], $email, true);
-        echo json_encode(['success' => true, 'message' => 'Message sent successfully!']);
-    } else {
-        throw new Exception('Mailer Error: ' . $mail->ErrorInfo);
+    $mail->Body = '
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
     }
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background: #ffffff;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid #e0e0e0;
+    }
+    .header {
+      background: #3A477D;
+      color: #ffffff;
+      padding: 16px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .content {
+      padding: 20px;
+      color: #333333;
+      font-size: 14px;
+    }
+    .content h2 {
+      color: #3A477D;
+      margin-top: 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    td {
+      padding: 8px 6px;
+      border-bottom: 1px solid #eeeeee;
+      vertical-align: top;
+    }
+    .label {
+      font-weight: bold;
+      width: 160px;
+      color: #3A477D;
+    }
+    .message-box {
+      margin-top: 10px;
+      background: #f9f9f9;
+      padding: 12px;
+      border-radius: 4px;
+      white-space: pre-wrap;
+    }
+    .footer {
+      background: #f0f0f0;
+      padding: 14px;
+      text-align: center;
+      font-size: 12px;
+      color: #555555;
+    }
+    .footer a {
+      color: #3A477D;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">VCS Website Contact Form</div>
 
+    <div class="content">
+      <h2>New Inquiry Received</h2>
+      <p>You have received a new message via the VCS website contact form.</p>
+
+      <table>
+        <tr><td class="label">Name</td><td>' . htmlspecialchars($name) . '</td></tr>
+        <tr><td class="label">Email</td><td>' . htmlspecialchars($email) . '</td></tr>
+        <tr><td class="label">Phone</td><td>' . htmlspecialchars($phone) . '</td></tr>
+        <tr><td class="label">Company</td><td>' . htmlspecialchars($company) . '</td></tr>
+        <tr><td class="label">Service Interested</td><td>' . htmlspecialchars($service) . '</td></tr>
+      </table>
+
+      <h2 style="margin-top:20px;">Message:</h2>
+      <div class="message-box">' . nl2br(htmlspecialchars($message)) . '</div>
+
+      <p style="margin-top:16px; font-size:13px; color:#666;">
+        This message was sent from the VCS website contact form.
+      </p>
+    </div>
+
+    <div class="footer">
+      <p>Victoria Computer Services (VCS) | IT Solutions Provider in Seychelles</p>
+      <p>Tel: +248 4676000 | <a href="mailto:info@vcs.sc">info@vcs.sc</a> | <a href="https://www.vcs.sc">vcs.sc</a></p>
+      <p>Please do not reply to this automated message.</p>
+    </div>
+  </div>
+</body>
+</html>';
+
+
+    $mail->AltBody = $message;
+
+    $mail->send();
+
+    echo json_encode(['success' => true, 'message' => 'Email sent']);
 } catch (Exception $e) {
-    log_submission($_SERVER['REMOTE_ADDR'], $data['email'] ?? 'unknown', false, $e->getMessage());
-    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
-} finally {
-    ob_end_flush();
+    error_log("Mailer error: " . $mail->ErrorInfo);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Mailer error: ' . $mail->ErrorInfo
+    ]);
 }
-
-// ====== FUNCTIONS ======
-
-function clean_input($data)
-{
-    // Strip tags first to remove any HTML
-    $data = strip_tags($data);
-    return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
-}
-
-function create_email_body($name, $email, $phone, $company, $service, $msg)
-{
-    return "
-    <html>
-    <body style='font-family: Arial, sans-serif; color: #333;'>
-        <h2 style='color: #800020;'>New VCS Website Inquiry</h2>
-        <p><strong>Name:</strong> $name</p>
-        <p><strong>Company:</strong> " . ($company ?: 'N/A') . "</p>
-        <p><strong>Email:</strong> <a href='mailto:$email'>$email</a></p>
-        <p><strong>Phone:</strong> " . ($phone ?: 'N/A') . "</p>
-        <p><strong>Service:</strong> $service</p>
-        <hr>
-        <h3>Message:</h3>
-        <p style='white-space: pre-wrap; background: #f9f9f9; padding: 15px;'>$msg</p>
-    </body>
-    </html>";
-}
-
-function create_text_body($name, $email, $phone, $company, $service, $msg)
-{
-    return "New Inquiry\n\nName: $name\nCompany: $company\nEmail: $email\nPhone: $phone\nService: $service\n\nMessage:\n$msg";
-}
-
-function log_submission($ip, $email, $success, $err = '')
-{
-    $status = $success ? 'SUCCESS' : 'FAIL';
-    $entry = date('Y-m-d H:i:s') . " [$status] IP:$ip Email:$email Error:$err\n";
-    @file_put_contents(__DIR__ . '/logs/submissions.log', $entry, FILE_APPEND);
-}
-?>

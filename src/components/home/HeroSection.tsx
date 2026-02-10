@@ -103,15 +103,7 @@ export const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
           <div className="max-w-xl">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-8"
-            >
-              <Zap className="w-4 h-4" />
-              Authorized Xerox Distributor
-            </motion.div>
+
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
