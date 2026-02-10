@@ -8,14 +8,14 @@ header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');*/
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit;
+  http_response_code(200);
+  exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['success' => false, 'message' => 'Method not allowed']);
-    exit;
+  http_response_code(405);
+  echo json_encode(['success' => false, 'message' => 'Method not allowed']);
+  exit;
 }
 
 require_once __DIR__ . '/PHPMailer/src/Exception.php';
@@ -26,20 +26,20 @@ require_once __DIR__ . '/PHPMailer/src/SMTP.php';
 $SMTP_HOST = 'smtp.office365.com';
 $SMTP_PORT = 587;
 $SMTP_USER = 'formmail@switch.sc';
-$SMTP_PASS = 'D7sdEg8zCuk';
+$SMTP_PASS = 'Password123';
 $TO_EMAIL = 'tech@switch.sc';
 // ==================
 
 $data = json_decode(file_get_contents('php://input'), true);
 if (!$data) {
-    echo json_encode(['success' => false, 'message' => 'Invalid JSON']);
-    exit;
+  echo json_encode(['success' => false, 'message' => 'Invalid JSON']);
+  exit;
 }
 
 // ===== HONEYPOT =====
 if (!empty($data['website_url'])) {
-    echo json_encode(['success' => true]);
-    exit;
+  echo json_encode(['success' => true]);
+  exit;
 }
 
 // ===== TIMESTAMP CHECK =====
@@ -60,35 +60,35 @@ $phone = trim($data['phone'] ?? '');
 $company = trim($data['company'] ?? '');
 
 if (!$name || !$email || strlen($message) < 10) {
-    echo json_encode(['success' => false, 'message' => 'Validation failed']);
-    exit;
+  echo json_encode(['success' => false, 'message' => 'Validation failed']);
+  exit;
 }
 
 $mail = new PHPMailer(true);
 
 try {
-    $mail->isSMTP();
-    $mail->Host = $SMTP_HOST;
-    $mail->SMTPAuth = true;
-    $mail->Username = $SMTP_USER;
-    $mail->Password = $SMTP_PASS;
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = $SMTP_PORT;
+  $mail->isSMTP();
+  $mail->Host = $SMTP_HOST;
+  $mail->SMTPAuth = true;
+  $mail->Username = $SMTP_USER;
+  $mail->Password = $SMTP_PASS;
+  $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+  $mail->Port = $SMTP_PORT;
 
-    // ⚠️ TEMPORARY DEBUG (remove later)
-    $mail->SMTPDebug = 2;
-    $mail->Debugoutput = 'error_log';
+  // ⚠️ TEMPORARY DEBUG (remove later)
+  $mail->SMTPDebug = 2;
+  $mail->Debugoutput = 'error_log';
 
-    $mail->setFrom($SMTP_USER, 'VCS Website');
-    $mail->addAddress($TO_EMAIL);
-    $mail->addReplyTo($email, $name);
-    $mail->isHTML(true);
-    $mail->CharSet = 'UTF-8';
-    $mail->Encoding = 'base64';
+  $mail->setFrom($SMTP_USER, 'VCS Website');
+  $mail->addAddress($TO_EMAIL);
+  $mail->addReplyTo($email, $name);
+  $mail->isHTML(true);
+  $mail->CharSet = 'UTF-8';
+  $mail->Encoding = 'base64';
 
-    $mail->Subject = "New Website Inquiry | VCS";
+  $mail->Subject = "New Website Inquiry | VCS";
 
-    $mail->Body = '
+  $mail->Body = '
 <!DOCTYPE html>
 <html>
 <head>
@@ -194,15 +194,15 @@ try {
 </html>';
 
 
-    $mail->AltBody = $message;
+  $mail->AltBody = $message;
 
-    $mail->send();
+  $mail->send();
 
-    echo json_encode(['success' => true, 'message' => 'Email sent']);
+  echo json_encode(['success' => true, 'message' => 'Email sent']);
 } catch (Exception $e) {
-    error_log("Mailer error: " . $mail->ErrorInfo);
-    echo json_encode([
-        'success' => false,
-        'message' => 'Mailer error: ' . $mail->ErrorInfo
-    ]);
+  error_log("Mailer error: " . $mail->ErrorInfo);
+  echo json_encode([
+    'success' => false,
+    'message' => 'Mailer error: ' . $mail->ErrorInfo
+  ]);
 }
