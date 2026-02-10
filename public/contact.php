@@ -26,7 +26,7 @@ require_once __DIR__ . '/PHPMailer/src/SMTP.php';
 $SMTP_HOST = 'smtp.office365.com';
 $SMTP_PORT = 587;
 $SMTP_USER = 'formmail@switch.sc';
-$SMTP_PASS = 'Password123';
+$SMTP_PASS = '';
 $TO_EMAIL = 'tech@switch.sc';
 // ==================
 
