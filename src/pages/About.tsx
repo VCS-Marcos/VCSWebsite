@@ -97,7 +97,7 @@ const About = () => {
                 </div>
                 <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
                   <p>
-                    Founded in 2009, VCS (Victoria Computer Services Pty Ltd) has grown from a small IT services company to a comprehensive managed service provider. Our journey has been driven by a commitment to delivering exceptional technology solutions that help businesses thrive.
+                    Founded in 1991, VCS (Victoria Computer Services Pty Ltd) has grown from a small IT services company to a comprehensive managed service provider. Our journey has been driven by a commitment to delivering exceptional technology solutions that help businesses thrive.
                   </p>
                   <p>
                     Today, we serve over 500 clients across various industries, providing everything from server infrastructure and networking to custom software development and Xerox document solutions.
